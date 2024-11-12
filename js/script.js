@@ -300,7 +300,7 @@ function optionSelected(answer) {
       answer.insertAdjacentHTML("beforeend", tickIconTag);
 
 
-     playAnimation();
+    // playAnimation();
 
    }
    else {

@@ -1,7 +1,4 @@
 
-
-
-
 const floatingBox = document.getElementById('floatingBox');
 const themeBox = document.getElementById('themeBox');
 
@@ -114,7 +111,7 @@ let widthValue = 0;
 const quit_quiz = result_box.querySelector(".buttons .quit");
 
 quit_quiz.onclick = () => {
-    if (confirm('Do you want to replay the quiz? \n\nYou can review of all questions')) {
+   //  if (confirm('Do you want to replay the quiz? \n\nYou can see review of all questions')) {
    {
       location.reload();
    }
@@ -303,7 +300,7 @@ function optionSelected(answer) {
       answer.insertAdjacentHTML("beforeend", tickIconTag);
 
 
-    playAnimation();
+     playAnimation();
 
    }
    else {

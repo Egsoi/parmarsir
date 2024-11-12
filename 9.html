@@ -1,0 +1,359 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-9           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [  
+
+{
+  question: "Atomic number of 1st Artificially produced Element (Tehnitium)?",
+  answer: " 43",
+  options: [ "41", " 42", " 43", " 44" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In respect of Arunachal Pradesh, the Governor has special responsibility under ________ of the Constitution of India with respect to law and order and in discharge of his functions in relation thereto.",
+  answer: " Article 371 H",
+  options: [ "Article 361 H", " Article 359 A", " Article 371 H", " Article 380 A" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Losoong festival is a celebration of harvesting of ______ .",
+  answer: "Sikkimese",
+  options: [ "Sikkimese", " Assamese", " Bengali", " Gujarati" ]
+},
+
+
+
+
+
+
+
+{
+  question: "‘Total Recall: My Unbelievably True Life Story’ was authored by whom among the  following personalities in addition to Peter Petre ?",
+  answer: "Malcom X",
+  options: [ "Malcom X", " Arnold Schwarzenegger", " Andre Agassi", " Pete Sampras" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which is NOT a feature of the Constitution of India?",
+  answer: " Dictatorship",
+  options: [ "Single Citizenship", " Dictatorship", " Integrated Judicial System", " A written constitution" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What are ribosomes made up of?",
+  answer: "Proteins and RNA",
+  options: [ "Proteins and RNA", " Only proteins", " Only DNA", " Only RNA" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which layer of the atmosphere do we spend the most of our lives?",
+  answer: "Troposphere",
+  options: [ "Thermosphere", " Troposphere", " Stratosphere", " Exosphere" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following Mauryan rulers was the first, who tried to convey his messages to his subjects concerning the idea and practice of dhamma through inscriptions?",
+  answer: " Ashoka",
+  options: [ "Brihadaratha", " Ashoka", " Dasaratha", " Chandragupta Maurya" ]
+},
+
+
+
+
+
+
+
+{
+  question: "________ is the study of the distribution and movement of water both on and below  the Earth’s surface, as well as the impact of human activity on water availability and  conditions.",
+  answer: "Hydrology",
+  options: [ "Hydrology", " Biology", " Anthology", " Ecology" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following years was the first population census conducted non- synchronously in different parts of India?",
+  answer: " 1872",
+  options: [ "1900", " 1885", " 1872", " 1912" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Credit Enhancement Guarantee Scheme encourages and promotes_______ among the scheduled castes.",
+  answer: " employment",
+  options: [ "housing", " employment", " education", " entrepreneurships" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Through an Act passed in which year was the post of Governor-General removed and  a new post of Viceroy got created during British rule in India?",
+  answer: " 1858",
+  options: [ "1833", " 1935", " 1858", " 1853" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following Hindustani classical musicians was NOT associated with  ‘Maihar Gharana’?",
+  answer: " Ustad Bismillah Khan",
+  options: [ "Pt Ravi Shankar", " Ustad Bismillah Khan", " Annapurna Devi", " Ali Akbar Khan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "A _________ is one billionth of a metre.",
+  answer: " nanometre",
+  options: [ "angstrom", " micrometre", " parsec", " nanometre" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is an example of a vertebrate?",
+  answer: " Mammals",
+  options: [ "Crustaceans", " Molluscs", " Insects", " Mammals" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT correct about the Prime Minister of India",
+  answer: " He and his ministers are collectively responsible to the Upper House of the Parliament.",
+  options: [ "He is the Head of the Government.", " He recommends the name of persons who can be appointed as ministers by the  President.", " He is the principal communicator between the President and the Council of Ministers.", " He and his ministers are collectively responsible to the Upper House of the Parliament." ]
+},
+
+
+
+
+
+
+
+{
+  question: "As per Industrial Policy Resolution, 1956, the first category includes industries, the future development of which will be the responsibility of the ________ .",
+  answer: "state only",
+  options: [ "Foreign Government", " private sector only", "state only", " cooperative sector only" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Gupta emperor Chandragupta I was the first ruler to adopt which of the following  titles?",
+  answer: " Maharajadhiraja",
+  options: [ "Mahendraditya", " Maharajadhiraja", " Vikramaditya", " Parmeshvara" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Identify the energy of a body arising from the motion of its atoms or molecules.",
+  answer: " Thermal energy",
+  options: [ "Wind energy", " Hydel energy", " Electrical energy", " Thermal energy" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Articles of the Indian Constitution are related to the  Comptroller and Auditor General of India?",
+  answer: " Article 148-151",
+  options: [ "Article 148-154", " Article 148-151", " Article 148-152", " Article 147-150" ]
+},
+
+    ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

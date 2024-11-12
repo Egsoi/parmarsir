@@ -1,0 +1,496 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      <br><br>
+
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4   ㅤLec-1          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+/*
+  Question Yaha Rahega.......isi formate me
+
+      {
+        question: "",
+        answer: "",
+        options: [""]
+      },
+
+*/
+
+
+
+
+
+
+{
+  
+  question: "Which of the following Dynasties established the kingdom of Vijayanagara?",
+  
+  answer: " Sangama Dynasty",
+  
+  options: [ " Sangama Dynasty", " Tuluva Dynasty", " Soma Dynasty", " Nagama Dynasty" ]
+  
+},
+
+
+
+
+
+
+
+
+{
+  
+  question: "The Ramakrishna Mission stressed the ideal of __________ through social  service and selfless action.",
+  
+  answer: " salvation",
+  
+  options: [ " salvation", " bhakti", " God", " education" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following cell organelle converts Nutrients into Energy ?",
+  
+  answer: " Mitochondria",
+  
+  options: [ " Golgi Apparatus", " Endoplasmic Reticulum", " Mitochondria", " Peroxisome" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "The Tamil word ‘muvendar’ mentioned in the Sangam poems means  _______.",
+  
+  answer: " three chiefs",
+  
+  options: [ "three chiefs", "Headmen", " dhamma mahamatta", " Rich" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "In which of the following languages did Jyotiba Phule write ‘Gulamgiri’ in  1873?",
+  
+  answer: " Marathi",
+  
+  options: [ " Gujarati", "English", " Marathi", " Hindi" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Choose the correct pair from the following options.",
+  
+  answer: " Fourth Five-year Plan - Family planning programme",
+  
+  options: [ " Second Five-year Plan – Focus on agriculture", " Third Five-year Plan – Rapid industrialisation and basic industries", " Fourth Five-year Plan - Family planning programme", "First Five-year Plan – Mahalanobis model" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Fundamental Duties were added in the Constitution of India under the  leadership of which Prime Minister of India?",
+  
+  answer: " Indira Gandhi",
+  
+  options: [ " Narsimha Rao", " Indira Gandhi", " Charan Singh", " Lal Bahadur Shastri" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following festivals in Punjab is celebrated to commemorate  the formation of the Khalsa Panth?",
+  
+  answer: " Baisakhi",
+  
+  options: [ "Lohri", " Teej", " Baisakhi", " Hola Mohalla" ]
+  
+},
+
+
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "The term ‘Back-stick’ is used in which of the following games/sports?",
+  
+  answer: " Hockey",
+  
+  options: [ " Badminton", " Basketball", " Hockey", " Volleyball" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Chemical formula of quick lime is ______.",
+  
+  answer: " CaO",
+  
+  options: [ " Ca(OH)2", " CaCO3", " CO2", " CaO" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following sites do “Not” have nuclear power plant?",
+  
+  answer: " Vijayawada",
+  
+  options: [ " Vijayawada", " Rawat Bhata", " Naraura", " Tarapur" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Who among the following is known as ‘Sarod Samrat’ in Indian Classical  Music?",
+  
+  answer: " Amjad Ali Khan",
+  
+  options: [ " Aamir Ali Khan", " Amjad Ali Khan", " Kishan Maharaj", " Pandit Ravishankar Prasad" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "In which of the following Indian states, Harappan cities have NOT been  found?",
+  
+  answer: " Uttarakhand",
+  
+  options: [ " Uttarakhand", " Haryana", " Rajasthan", " Gujarat" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Who wrote the Book Wealth of Nations ?",
+  
+  answer: " Adam Smith",
+  
+  options: [ " JM Keynnes", " Adam Smith", " Irving Fischer", " Dadabhai Naoroji" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Where is Indian Institute of Skiing & Mountaineering located :",
+  
+  answer: " J&K",
+  
+  options: [ " Arunachal Pradesh", " Sikkim", " Uttarakhand", " J&K" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Identify an example of organisms that are free-swimming and bottom- dwelling forms.",
+  
+  answer: " Zooplankton",
+  
+  options: [ " Zooplankton", " Jellyfishes", " Phytoplankton", " Nekton" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "In what form is the energy derived from the food that we eat is stored in  our body?",
+  
+  answer: " Glycogen",
+  
+  options: [ " Glucose", " Glycogen", " Maltose", " Starch" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "❝ 𝐀𝐥𝐥 𝐈𝐧𝐝𝐢𝐚 𝐌𝐮𝐬𝐥𝐢𝐦 𝐋𝐞𝐚𝐠𝐮𝐞 ❞  was established in 1906 at ______.",
+  
+  answer: " Dacca",
+  
+  options: [ " Madras", " Dacca", " Surat", " Bombay" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "Who gave the Big Bang theory of Origin of Universe?",
+  
+  answer: " Lemaitre",
+  
+  options: [ " Laplace", " Immanuel Kant", " Lemaitre", " Alfred Wegner" ]
+  
+},
+
+
+
+
+
+
+
+
+
+{
+  
+  question: "With which of the following states is the folk dance Tarangmel associated?",
+  
+  answer: " Goa",
+  
+  options: [ " Goa", " Madhya Pradesh", " Kerala", " Tamil Nadu" ]
+  
+},
+
+
+
+
+      ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

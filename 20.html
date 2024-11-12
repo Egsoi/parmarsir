@@ -1,0 +1,325 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">      PYQ-4ㅤLec-20         </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT a fundamental duty of an Indian citizen?",
+  answer: " To vote in public elections",
+  options: [ "To uphold and protect the sovereignty- unity and integrity of India", " To safeguard public property and to abjure violence", " To vote in public elections", " To value and preserve the rich heritage of our composite culture" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The wet temperate type of forests are found between a height of ______ metres.",
+  answer: " 1000 and 2000",
+  options: [ "2000 and 3000", " 1500 and 3000", " 1000 and 2000", " 500 to 1000" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the average elevation of the Eastern Ghats of India?",
+  answer: " 600 metres",
+  options: [ "400 metres", " 200 metres", " 600 metres", " 900 metres" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Select the name of the hydrocarbon with a structural formula CH3 – CH2 – CH2 – CH2– CH2– CH3 .",
+  answer: " n-Hexane",
+  options: [ "2-Methylpentane", " n-Hexane", " 2-2-Dimethylbutane", " 3-methyl hexane" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following programmes is NOT a part of the Tenth Five-Year Plan?",
+  answer: " Drought Prone Area Programme",
+  options: [ "National Horticulture Mission", " Drought Prone Area Programme", " Micro Irrigation Programme", " Jute Technology Mission" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which phenomenon is opposite to solidification?",
+  answer: " Fusion",
+  options: [ "Condensation", " Fusion", " Vaporisation", " Sublimation" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following post was not held by Harisena ?",
+  answer: " Nagar Shresthi",
+  options: [ "Mahadandanayaka", " Sandhi Vigrahika", " Kumar Amatya", " Nagar Shresthi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "With regard to the component of population density, which state is the odd one out of  the following?",
+  answer: " Arunachal Pradesh",
+  options: [ "Tamil Nadu", " Bihar", " Arunachal Pradesh", " Uttar Pradesh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the total length of Golden Quadrilateral, built by the National Highways  Authority of India(NHAI)?",
+  answer: " 5846 km",
+  options: [ "5978 km", " 4658 km", " 5790 km", " 5846 km" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT an example of inertia at rest?",
+  answer: " The sudden application of brakes in a vehicle",
+  options: [ "Falling down backward when a vehicle starts immediately", " Falling down of dust particle while dusting a cloth", " The detachment of leaves/fruits due to shaking", " The sudden application of brakes in a vehicle" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the Valency of halogens .",
+  answer: "Two",
+  options: [ "Two", " One", " Five", " Seven" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Planets has the lowest Density ?",
+  answer: " Saturn",
+  options: [ "Earth", " Mercury", " Saturn", " Jupiter" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which sector promotes modernisation and stable employment in the economy?",
+  answer: " Industrial sector",
+  options: [ "Service sector", " Agriculture sector", " Energy sector", " Industrial sector" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The term Lineation is associated with which type of Rock ?",
+  answer: "Metamorphic Rock",
+  options: [ "Igneous Rock", "Metamorphic Rock", "Sedimentary Rock", "Exfoliated Rock" ]
+},
+
+
+
+
+
+
+
+{
+  question: "During which Dynasty Timur invaded India ?",
+  answer: "Tughluq Dynasty",
+  options: [ "Slave Dynasty", "Khilji Dynasty", "Tughluq Dynasty", "Sayyid Dynasty" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a Stock Concept ?",
+  answer: "Wealth",
+  options: [ "Salary", "Wealth", "Investment", "Consumption" ]
+},
+
+
+
+
+      ];
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

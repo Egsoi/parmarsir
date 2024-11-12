@@ -1,0 +1,375 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">   PYQ-4ㅤLec-22            </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Identify a substance that is NOT an allotrope of carbon.",
+  answer: " Phosphorus",
+  options: [ "Diamond", " Graphite", " Buckminsterfullerene", " Phosphorus" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following schedules of the Wildlife (Protection) Act, 1972 is the most  common wild cat in India 'Felis chaus' listed?",
+  answer: " Schedule II",
+  options: [ "Schedule I", " Schedule III", " Schedule IV", " Schedule II" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was the Foreign Investment Board established?",
+  answer: " 1968",
+  options: [ "1960", " 1968", " 1965", " 1991" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In case the President is satisfied with the Governor’s report, he may declare President’s Rule under Article 356 but such proclamation is initially for a period of ________.",
+  answer: " six months",
+  options: [ "two months", " one month", " six months", " three months" ]
+},
+
+
+
+
+
+
+
+{
+  question: "According to Census 2011, which of the following languages is spoken by the least  population in India?",
+  answer: "Sanskrit",
+  options: [ "Sanskrit", " Dogri", " Assamese", " Konkani" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which festival is celebrated after the month of Ramzan?",
+  answer: "Eid ul Fitr",
+  options: [ "Eid ul Fitr", " Muharram", " Milad un Nabi", " Jammat Ul Vida" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Kojagiri Poornima is a festival celebrated primarily in _______ on the full moon day of  Ashwin month.",
+  answer: "Maharashtra",
+  options: [ "Maharashtra", " Kerala", " Andhra Pradesh", " Bihar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which river flows into the Wular lake in the north and then into Baramulla?",
+  answer: " Jhelum",
+  options: [ "Beas", " Sutlej", " Jhelum", " Ravi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following districts is Baira Siul Dam located?",
+  answer: " Chamba",
+  options: [ "Bilaspur", " Chamba", " Kinnaur", " Mandi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following pairs of physicists and their contributions/discoveries is  INCORRECT?",
+  answer: "Galileo Galilei – Wave theory of light",
+  options: [ "Galileo Galilei – Wave theory of light", " Michael Faraday – Laws of electromagnetic induction", " Heinrich Rudolf Hertz – Generation of electromagnetic waves", " Albert Einstein – Explanation of photoelectric effect" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions about the right of the Advocate- General of a state to speak in the State Legislature?",
+  answer: " Article 177",
+  options: [ "Article 183", " Article 179", " Article 177", " Article 181" ]
+},
+
+
+
+
+
+
+
+{
+  question: "A long, winding ridge of stratified sand and gravel is known as:",
+  answer: " esker",
+  options: [ "Moraine", " esker", " Aquifer", " Erratic" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Selling of bonds by the RBI will cause money supply to __________.",
+  answer: " decrease",
+  options: [ "increase", " No relationship exists between selling bonds and money supply", " fluctuate", " decrease" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT a basic feature of the Indian Constitution?",
+  answer: " Drawn from one source",
+  options: [ "Parliamentary system", " Blend of rigidity and flexibility", " Lengthiest written Constitution", " Drawn from one source" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which subdivision of ecology is sometimes defined as 'species ecology' and is also associated with physiological ecology?",
+  answer: " Autecology",
+  options: [ "Palaeontology", " Synecology", " Ornithology", " Autecology" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was the football world cup started?",
+  answer: " 1930",
+  options: [ "1934", " 1928", " 1932", " 1930" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which curve is Rectangular Hyperbolic ?",
+  answer: "Average Fixed Revenue",
+  options: [ "Lorenz Curve", "Laffers Curve", "Average Fixed Revenue", "Ham Curve nahi dekhte" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was the Citizenship Act passed in India?",
+  answer: " 1955",
+  options: [ "1951", " 1955", " 1959", " 1964" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statement regarding ocean currents is correct?",
+  answer: " The areas where the warm and cold currents meet provide the best fishing grounds.",
+  options: [ "The Labrador Ocean current is warm current.", " The areas where the warm and cold currents meet provide the best fishing grounds.", " The cold ocean currents move towards the poles.", " The warm ocean currents move towards the equator." ]
+},
+
+
+
+
+
+
+
+{
+  question: "When did Indigo revolt, a peasant movement, start in India?",
+  answer: " 1859",
+  options: [ "1857", " 1861", " 1859", " 1889" ]
+},
+
+
+
+
+
+
+
+
+      ];
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

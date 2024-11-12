@@ -1,0 +1,511 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-30           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+
+{
+  question: "Identify the correct statement about gravity .",
+  answer: "The unit of g is the same as that of acceleration.",
+  options: [ "The unit of g is the same as that of acceleration.", " The unit of g is the same as that of velocity.", " The unit of g is the same as that of mass.", " The unit of g is the same as that of friction." ]
+},
+
+
+
+
+
+
+
+{
+  question: "French possessions in India were restored after the Battle of Wandiwash by the Treaty of ________ signed in the year 1763 between Britain and France.",
+  answer: " Paris",
+  options: [ "Purandar", " Paris", " Tordesillas", " Surat" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In the Interim Government formed on 2 September 1946, Liaquat Ali Khan was given the charge of:",
+  answer: " the Finance Ministry",
+  options: [ "the External Affairs Ministry", " the Finance Ministry", " the Defence Ministry", " the Home Ministry" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT included in inventory investment when calculating national income?",
+  answer: "Change in sales during the year",
+  options: [ "Change in sales during the year", " Change in stock of semi-finished goods", " Change in stock of raw material", " Change in stock of finished goods" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT an example of a minor industrial region of India?",
+  answer: "Hugli region",
+  options: [ "Hugli region", " Ambala-Amritsar region", " Northern Malabar region", " Durg-Raipur region" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is the most Reactive element ?",
+  answer: " Sodium",
+  options: [ "Magnesium", " Sodium", " Silver", " Gold" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The shape of a basketball court is a _____ .",
+  answer: " rectangle",
+  options: [ "circle", " rectangle", " square", " triangle" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Eastern Ghats stretch from the ________ to the Nigiris in the south",
+  answer: " Mahanadi Valley",
+  options: [ "Godavari Valley", " Mahanadi Valley", " Damodar Valley", " Son Valley" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The measure of the force that can cause an object to rotate about an axis is called:",
+  answer: " torque",
+  options: [ "power", " moment of inertia", " centripetal force", " torque" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Living organisms have been on Earth for how much percent of Earth's history?",
+  answer: " 80%",
+  options: [ "60 %", " 40%", " 80%", " 20%" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In Ball Badminton, players change the ends in each game when a side first scores all of the following, EXCEPT:",
+  answer: " 11",
+  options: [ "18", " 11", " 27", " 9" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who is the author of the book ‘The Soul of a Butterfly: Reflections on Life’s Journey’?",
+  answer: "Muhammad Ali",
+  options: [ "Muhammad Ali", " Jake LaMotta", " Roberto Duran", " Eugene J Bullard" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which country do the 'Veddas' traditional forest dwellers who foraged, hunted and lived in close-knit groups in caves in the dense jungles?",
+  answer: "Sri Lanka",
+  options: [ "Sri Lanka", " Myanmar", " Nepal", " Bhutan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Intervention by the monetary authority of a country in the money market to keep money supply stable against exogenous or sometimes external shocks is called ____ .",
+  answer: " sterilisation",
+  options: [ "neutralisation", " conservation", " sterilisation", " capitalisation" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Lal Thanhawla holds the record for the longest-serving Chief Minister of ________ occupying the position for five terms.",
+  answer: "Mizoram",
+  options: [ "Mizoram", " Meghalaya", " Sikkim", " Manipur" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Where is the renowned Bhatkhande music institute located?",
+  answer: " Lucknow",
+  options: [ "Surat", " Chennai", " Lucknow", " Madurai" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who is the Indian batsman after whom the Ranji Trophy is named?",
+  answer: "Ranjit Sinhji",
+  options: [ "Ranjit Sinhji", " Ranjit Wadekar", " Ranjit Patel", " Ranjit Singh Bedi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was the author of 'Brihat Katha Kosh'?",
+  answer: " Harisena",
+  options: [ "Bhavabhuti", " Harisena", " Kshemendra", " Dandin" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was the All India Football Federation (AIFF) formed?",
+  answer: " 1937",
+  options: [ "1967", " 1937", " 1947", " 1957" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The velocity of circulation of Money will be higher when the ____is less than the requirement of the Economy :",
+  answer: " Demand for money",
+  options: [ "Velocity of money", " Demand for money", " Money in the bank (wwe vala nahi)", " Supply of Money" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who introduced the concept of virtual water?",
+  answer: " John Anthony Allan",
+  options: [ "Glubler Triplets", " John Anthony Allan", " MS Swaminathan", " Norman Borlaug" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year did the Indian Constitution declare Hindi in Devanagari script to be the official language of the Union?",
+  answer: " 1949",
+  options: [ "1952", " 1955", " 1949", " 1951" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Where is the oldest centre of lace work located in Gujarat?",
+  answer: " Jamnagar",
+  options: [ "Rajkot", " Jamnagar", " Ahmedabad", " Kutch" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements is/are correct? ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ1 ____Maximum National Parks in India are located in the state of Madhya Pradesh. ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ2 ____ Mudumalai National Park is located in Kerala. ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 3 ____ The Salim Ali Centre for Ornithology and Natural History is located in Tamil Nadu.",
+  answer: " Both I and III are correct",
+  options: [ "Only I is correct.", " Both I and II are correct", " Only III is correct", " Both I and III are correct" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Shattantri Veena, meaning a Veena with hundred strings, is the ancient Sanskrit name of which instrument?",
+  answer: "Santoor",
+  options: [ "Santoor", " Tambura/Tanpura", " Sarangi", " Sarod" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Amendment is related Article 3 of Constitution ?",
+  answer: " 5th",
+  options: [ "1st", " 2nd", " 3rd", " 5th" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the minimum Over rate per hour in a Test Match?",
+  answer: " 15 Overs/hr",
+  options: [ "10 Overs/hr", " 15 Overs/hr", " 13 Overs/hr", " 17 Overs/hr" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which exchange rate is determined by the Market Forces of Demand &  Supply ?",
+  answer: "Floating",
+  options: [ "Floating", "Fixed", "Hard Pegged", "Soft Pegged" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Why is the six membered cyclic structure of glucose called a pyranose structure?",
+  answer: " Pyran is a cyclic organic compound with one oxygen atom and five carbon atoms in the ring.",
+  options: [ "Pyran is a non-cyclic organic compound with one oxygen atom and five carbon atoms in the ring.", " Pyran is a cyclic organic compound with one oxygen atom and five carbon atoms in the ring.", " Furan is a five membered cyclic compound with one oxygen and four carbon atoms.", " Furan is a five membered non-cyclic compound with one oxygen and four carbon atoms." ]
+},
+
+
+
+
+
+
+
+{
+  question: "What do you mean by semiconservative DNA replication?",
+  answer: "After the completion of replication each DNA molecule would have one parental  and one newly synthesised strand.",
+  options: [ "After the completion of replication each DNA molecule would have one parental  and one newly synthesised strand.", " After the completion of replication each DNA molecule would have two parental  and two newly synthesised strand.", " RNA is dependent on DNA for the synthesis of proteins.", " DNA is dependent on RNA for the synthesis of proteins" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The relationship between which of the following is correct?",
+  answer: " National income = NDP at factor cost + net factor income from abroad *",
+  options: [ "Domestic income = NDP at market price + net indirect taxes", " GDP at market price = price + quantity of final goods and services", " National income = NDP at factor cost + net factor income from abroad *", " NDP at market price = GDP at market price + depreciation" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The method of separating a mixture of soluble solids by dissolving them in a suitable hot solvent and then lowering the temperature slowly is called:",
+  answer: " fractional crystallization",
+  options: [ "azeotropic distillation", " fractional crystallization", " sublimation", " dephlegmation" ]
+},
+
+
+
+
+
+
+
+      ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

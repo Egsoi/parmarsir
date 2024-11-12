@@ -1,0 +1,375 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-18           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "In which of the following sports/games is the term 'checkmate' used?",
+  answer: " Chess",
+  options: [ "Polo", " Volleyball", " Handball", " Chess" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Rock is also known as Primary Rock ?",
+  answer: "Igneous",
+  options: [ "Igneous", "Metamorphic", "Sedimentary", "NOT" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Henry Louis Vivian Derozio, a teacher at Hindu College, Calcutta, in the 1820s, promoted radical ideas and encouraged his pupils to question all authority. Referred to as the ______, his students attacked tradition and custom, demanded education for women and campaigned for the freedom of thought and expression",
+  answer: " Young Bengal Movement",
+  options: [ "Young Radical Movement", " Young Christian Movement", " Young Men’s Movement", " Young Bengal Movement" ]
+},
+
+
+
+
+
+
+
+{
+  question: "A primitive form of cultivation called Bewar is practised in which state?",
+  answer: " Madhya Pradesh",
+  options: [ "Odisha", " Madhya Pradesh", " Andhra Pradesh", " Mizoram" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Ibn Battuta, who visited India during the tenure of which ruler ?",
+  answer: "Iltutmish",
+  options: [ "Iltutmish", " Alauddin Khilji", " Md Bin Tughluq", " Sikander Lodi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "On which of the following component of chloroplast is chlorophyll arranged?",
+  answer: " Thylakoids",
+  options: [ "Cell Membrane", " Matrix", " Thylakoids", " Stroma" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who has the power to prorogue the House or either House of State Legislature from  time to time?",
+  answer: " Governor",
+  options: [ "Chief Minister", " Speaker", " Governor", " Chairman" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Libero, a special player, plays in which of the following sports?",
+  answer: " Volleyball",
+  options: [ "Football", " Basketball", " Handball", " Volleyball" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which vitamin prevents the neural tube defect in new-born babies?",
+  answer: " Folic acid",
+  options: [ "Niacin", " Riboflavin", " Folic acid", " Ascorbic acid" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Guntapalle Chaitya Buddhist cave is situated in which of the following states?",
+  answer: "Andhra Pradesh",
+  options: [ "Andhra Pradesh", " Bihar", " Maharashtra", " Himachal Pradesh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "According to Hindu calendar, on which day does Holika Dahan take place?",
+  answer: "Phalgun Poornima",
+  options: [ "Phalgun Poornima", " Chaitra Pratipada", " Chaitra Poornima", " Phalgun Amawasya" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was the guru of Tansen?",
+  answer: " Swami Haridasa",
+  options: [ "Abul Fazal", " Makarand Mishra", " Shaukat Mian", " Swami Haridasa" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following classical dance forms of India is a blend of dance, music and  acting and dramatises stories, which are mostly adapted from the Indian epics?",
+  answer: " Kathakali",
+  options: [ "Odissi", " Kathak", " Kathakali", " Manipuri" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The thermocline layer is the _______ layer of the ocean.",
+  answer: " second",
+  options: [ "fourth", " third", " second", " first" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which is the weakest intermolecular force, considered as the Van der Waals force,  often found in halogens, noble gases and other non-polar molecules?",
+  answer: " London dispersion forces",
+  options: [ "Ion-dipole forces", " Dipole– induced dipole forces", " Dipole – dipole forces", " London dispersion forces" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which king of Punjab signed a tripartite treaty with Shah Shujah and the English Company?",
+  answer: "Ranjit Singh",
+  options: [ "Ranjit Singh", " Lal Singh", " Kharak Singh", " Dileep Singh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "According to the India State of Forest Report 2021, ________ group covers 4,992 km2 of the total geographical area.",
+  answer: " Mangroves",
+  options: [ "Alpine", " Mangroves", " Thorn", " Montane" ]
+},
+
+
+
+
+
+
+
+{
+  question: "For providing a non-microfinance loan to a low-income household, there is a limit of _________ on monthly loan repayment obligations of a household as a percentage of monthly household income.",
+  answer: " 50 %",
+  options: [ "25 %", " 50 %", " 75 %", " 40 %" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Manas, Ranthambore, Kanha and Sunderbans are:",
+  answer: "national parks",
+  options: [ "national parks", " gene banks", " zoos", " bird sanctuaries" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Pandit Bhimsen Joshi was an exponent of which form of Hindustani classical music?",
+  answer: " Khayal",
+  options: [ "Dhrupad", " Thumri", " Tappa", " Khayal" ]
+},
+
+
+
+
+
+      ];
+      
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

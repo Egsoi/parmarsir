@@ -1,0 +1,339 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-14           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+
+{
+  question: "Which of the following duties is mentioned as the 11th Fundamental Duty in the Indian Constitution?",
+  answer: " To provide opportunities for education to children between 6-14 years of age",
+  options: [ "To protect the integrity and unity of India", " To develop a scientific temper", " To provide opportunities for education to children between 6-14 years of age", " To cherish and preserve the rich national heritage of our culture" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which scientist synthesised an organic compound, urea, from an inorganic compound, ammonium cyanate?",
+  answer: " F Wohler",
+  options: [ "Berthelot", " F Wohler", " Kolbe", " Berzelius" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which is the oldest and most widespread industry in India?",
+  answer: " Textile",
+  options: [ "Food processing", " Fertiliser", " Mining", " Textile" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Rickets is caused by deficiency of:",
+  answer: " vitamin D",
+  options: [ "vitamin C", " vitamin B", " vitamin D", " vitamin A" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which schedule of the Constitution of India contains provisions for disqualification of legislator on the ground of defection?",
+  answer: "Schedule-X",
+  options: [ "Schedule-X", " Schedule-XI", " Schedule-VIII", " Schedule-IX" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which metallic element is called ‘ferromagnetic’ because of its strong attraction?",
+  answer: " Iron",
+  options: [ "Gold", " Molybdenum", " Aluminium", " Iron" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who Discovered the Positron ?",
+  answer: " Carl Anderson",
+  options: [ "JJ Thomson", " Ernst Rutherford", " Carl Anderson", " Neils Bohr" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT one of the Rabi crops?",
+  answer: " Cucumber",
+  options: [ "Mustard", " Cucumber", " Wheat", " Barley" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The famous musician Vishnu Govind Jog is primarily associated with which of the  following musical instruments?",
+  answer: "Violin",
+  options: [ "Violin", " Veena", " Flute", " Tabla" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Sriharikota island is located in which of the following states?",
+  answer: " Andhra Pradesh",
+  options: [ "West Bengal", " Tamil Nadu", " Odisha", " Andhra Pradesh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which glands help in digestion in the stomach?",
+  answer: " Gastric glands",
+  options: [ "Pineal", " Gastric glands", " Thyroid", " Pituitary" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following industries was NOT in Schedule A of Industrial Policy 1956?",
+  answer: "Mining of salt",
+  options: [ "Mining of salt", " Iron and steel", " Air transport", " Mineral oils" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What do you call the drugs that bind to the receptor site and inhibits its Natural  Function’?",
+  answer: " Antagonist",
+  options: [ "Agonist", " Antagonist", " Depressant", " Anti Depressant" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The appointment of the Governor by the Center is related to which feature of the Constitution of India?",
+  answer: "Unitary system",
+  options: [ "Unitary system", "Supremacy of the Constitution", "Directive Principles", "Federal feature" ]
+},
+
+
+
+
+
+
+
+{
+  question: "________ is a state of deprivation that reflects the inability of an individual to satisfy basic needs for a sustained, healthy and reasonably productive living.",
+  answer: "Poverty",
+  options: [ "Poverty", " Illiteracy", " Ignorance", " Bondage" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Indian award was established in the year 1982, to promote and encourage scientific efforts in the field of environment and ecology?",
+  answer: " Indira Gandhi Paryavaran Puraskar",
+  options: [ "B P Pal National Environment Fellowship Award for Biodiversity", " Sanjay Gandhi Award for Environment and Ecology", " Pitambar Pant National Environment Fellowship Award", " Indira Gandhi Paryavaran Puraskar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a poor conductor of electricity?",
+  answer: " Distilled water",
+  options: [ "Tap water", " Distilled water", " Water from pond", " Water from hand pump" ]
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ];
+      
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

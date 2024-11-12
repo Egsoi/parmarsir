@@ -1,0 +1,327 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">   PYQ-4ㅤLec-23            </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Which of the following books was written by Chitra Banerjee Divakaruni?",
+  answer: " The Palace of Illusions",
+  options: [ "Malgudi Days", " The Palace of Illusions", " A Fine Balance", " The feast of roses" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which hairpin-like structure serves to anchor and stabilise the tick's mouthparts to its host's skin and to channel the exchange of fluids?",
+  answer: " Hypostome",
+  options: [ "Peduncle", " Substratum", " Hypostome", " Trunk" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Krishna III of Rashtrakuta dynasty established a victory pillar and a temple at which of the following cities of south India after defeating the Chola ruler Parantaka I?",
+  answer: " Rameswaram",
+  options: [ "Poompuhar", " Udaiyalur", " Takkolam", " Rameswaram" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Five Year Plan period saw the initiation of the Hill Area Development  Programme?",
+  answer: " Fifth Five Year Plan",
+  options: [ "Sixth Five Year Plan", " Fourth Five Year Plan", " Eighth Five Year Plan", " Fifth Five Year Plan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a term for the common local wind that blows in north and  north western parts of India during summers?",
+  answer: "Loo",
+  options: [ "Loo", " Chinook", " Foehn", " Bora" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following compounds is an Alicyclic compound?",
+  answer: " Cyclopropane",
+  options: [ "Ethane", " Isobutane", " Acetic acid", " Cyclopropane" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following wrote the novel ‘Grimus’?",
+  answer: " Salman Rushdie",
+  options: [ "Amitav Ghosh", " Salman Rushdie", " Arvind Adiga", " Vikram Seth" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which physicist is known to establish the relationship between mechanical work and  heat transfer?",
+  answer: " James Prescott Joule",
+  options: [ "Hermann Helmholtz", " John Dalton", " James Prescott Joule", " William Henry" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which dwarf planet orbits the sun in 310 years at a distance between 38.5 to 53 AU?",
+  answer: "Makemake",
+  options: [ "Ceres", "Eris", "Makemake", "Pluto" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In the context of DNA, which of the following principles governs the process of  transcription?",
+  answer: "The principle of complementarity",
+  options: [ "Semiconservative nature of DNA", "The principle of complementarity", "The transforming principle", "The principle of inheritance" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following components of blood provides Defence .",
+  answer: "WBCs",
+  options: [ "Platelets", "Plasma", "RBCs", "WBCs" ]
+},
+
+
+
+
+
+
+
+{
+  question: "_____ is a significant festival of the Parsi people who practice Zoroastrianism as it marks the birth anniversary of Zoroaster.",
+  answer: "Khordad Sal",
+  options: [ "Jamshed-e-Navroz", "Pateti", "Khordad Sal", "Gahambars" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Warli Painting is the folk painting of ______ state of India.",
+  answer: " Maharashtra",
+  options: [ "Manipur", " Mizoram", " Karnataka", " Maharashtra" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was Raziyya removed from the throne of the Delhi Sultanate?",
+  answer: " 1240",
+  options: [ "1244", " 1240", " 1238", " 1236" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The value added of a firm is calculated as ________.",
+  answer: "value of production of the firm – value of  intermediate goods used by the firm",
+  options: [ "value of production of the firm – value of  intermediate goods used by the firm", " value of production of the firm + value of  capital goods used by the firm", " value of production of the firm / value of  intermediate goods used by the firm", " value of production of the firm + value of  intermediate goods used by the firm" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article talks about the Pardoning Power of Governor ?",
+  answer: "Article 161",
+  options: [ "Article 72", "Article 123", "Article 213", "Article 161" ]
+},
+
+
+
+
+
+
+
+
+      ];
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

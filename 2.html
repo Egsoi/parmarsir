@@ -1,0 +1,424 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-2          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+
+    let questions = [
+/*
+  Question Yaha Rahega.......isi formate me
+
+      {
+        question: "",
+        answer: "",
+        options: [""]
+      },
+
+*/
+
+
+{
+
+  question: "Which of the following union territories has the least literacy rate according to the Census of India 2011?",
+
+  answer: "Dadra and Nagar Haveli",
+
+  options: ["Dadra and Nagar Haveli", "Daman and Diu", "Lakshadweep", "Andaman and Nicobar Island"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "The transfer of heat through horizontal movement of air is called  _____.",
+
+  answer: "advection",
+
+  options: ["conduction", "variation", "convection", "advection"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "The Fundamental Rights are enshrined in which Part of the Indian Constitution?",
+
+  answer: "Part III",
+
+  options: ["Part II", "Part III", "Part IV A", "Part IV"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "Which Article of the Indian Constitution mentions that ' 𝐍𝐨 𝐩𝐞𝐫𝐬𝐨𝐧 𝐬𝐡𝐚𝐥𝐥 𝐛𝐞  𝐩𝐫𝐨𝐬𝐞𝐜𝐮𝐭𝐞𝐝 𝐚𝐧𝐝 𝐩𝐮𝐧𝐢𝐬𝐡𝐞𝐝 𝐟𝐨𝐫 𝐭𝐡𝐞 𝐬𝐚𝐦𝐞 𝐨𝐟𝐟𝐞𝐧𝐜𝐞 𝐦𝐨𝐫𝐞 𝐭𝐡𝐚𝐧 𝐨𝐧𝐜𝐞 ' ?",
+
+  answer: "Article 20(2)",
+
+  options: ["Article 20(4)", "Article 20(2)", "Article 20(3)", "Article 20(1)"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "Which of the following rulers is considered as the greatest king of Satavahana dynasty and is described as the destroyer of the Sakas, Yavanas and Pahlavas?",
+
+  answer: "Gautamiputra Satakarni",
+
+  options: ["Simuka", "Hala", "Gautamiputra Satakarni", "Yajna Sri Satakarni"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "Sanskrit College at Benaras was founded by ________.",
+
+  answer: "Jonathan Duncan",
+
+  options: ["Thomas Munro", "Jonathan Duncan", "William Jones", "James Mill"]
+
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Select the correct statement about climax community.",
+  
+  answer: "It is an ecological community in which populations of plants or animals remain stable and exist in balance with each other and their environment.",
+  
+  options: [ "It is an ecological community in which populations of plants or animals- which are very unstable and exist for very few time.", "It is a very first community of ecosystem.", "It is an ecological community in which populations of plants or animals remain stable and exist in balance with each other and their environment.", "It consist of only plant population that makes a new ecological system." ]
+  
+},
+
+
+
+
+{
+
+  question: "________is associated with the production and metabolism of fats and  steroid hormones.",
+
+  answer: "Smooth endoplasmic reticulum",
+
+  options: ["Nucleus", "Golgi apparatus", "Smooth endoplasmic reticulum", "Mitochondrion"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "Identify the Indian musician who is associated with wind instrument  (played by blowing).",
+
+  answer: "Bismillah Khan",
+
+  options: ["Vishwa Mohan Bhat", "Pandit Deen Dayal", "Pandit Ravi Shankar", "Bismillah Khan"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "Geologically, which of the following physiographic divisions of India is  supposed to be one of the most stable land blocks?",
+
+  answer: "The Peninsular Plateau",
+
+  options: ["The Himalayas", "The Northern Plains", "The Peninsular Plateau", "The Indian Desert"]
+
+},
+
+
+
+
+
+
+
+{
+
+  question: "Who among the following was conferred with the title of ❝ 𝐊𝐡𝐚𝐧-𝐢–𝐊𝐡𝐚𝐧𝐚𝐧 ❞   under Akbar?",
+
+  answer: "Bairam Khan",
+
+  options: ["Abul Fazl", "Todar Mal", "Bairam Khan", "Baz Bahadur"]
+
+},
+
+
+{
+  
+  question: "Which Article of the Indian Constitution mentions that the President is  eligible for re-election?",
+  
+  answer: "Article 57",
+  
+  options: [ "Article 54", "Article 57", "Article 56", "Article 55" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Who elects the Presiding Officer (the speaker) in the State legislature?",
+  
+  answer: "Members of Vidhan Sabha",
+  
+  options: [ "Members of Vidhan Sabha", "Member of Vidhan Parishad", "Chief Minster", "Council of Minsters" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Who among the following revolutionaries was one of the co-founders of the Hindustan Socialist Republican Association (HSRA) which got established in 1928 at Ferozeshah Kotla in Delhi?",
+  
+  answer: "Bhagat Singh",
+  
+  options: [ "Gopal Krishna Gokhale", "Aurobindo Ghosh", "Bhagat Singh", "Mahatma Gandhi" ]
+  
+},
+
+
+
+
+{
+  
+  question: "Sattriya dance form is famous in which of these states?",
+  
+  answer: "Assam",
+  
+  options: [ "Assam", "Himachal Pradesh", "Punjab", "Tamil Nadu" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following Indo-Greek kings was mentioned in the Buddhist  text Milindapanho as Milinda?",
+  
+  answer: "Menander I",
+  
+  options: [ "Demetrius I", "Menander I", "Antiochus I", "Strato II" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "________ is a mode of communication in itself, and it also regulates the  use of other means of communication.",
+  
+  answer: "Satellite",
+  
+  options: [ "Television", "Radio", "Phone", "Satellite" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following Quantity is kept 𝐜𝐨𝐧𝐬𝐭𝐚𝐧𝐭  in 𝐁𝐨𝐲𝐥𝐞’𝐬 𝐥𝐚𝐰 ?",
+  
+  answer: "Temperature",
+  
+  options: [ "Pressure", "Volume", "Temperature", "N.O.T." ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Koderma Gaya Hazaribagh belt is known for the production of which of the  following minerals?",
+  
+  answer: "Mica",
+  
+  options: [ "Mica", "Copper", "Coal", "Bauxite" ]
+  
+},
+
+
+
+
+
+      ];
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

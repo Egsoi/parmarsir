@@ -1,0 +1,359 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-7          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+  let questions = [  
+
+
+{
+  question: "The first South Asian Games were hosted by _____.",
+  answer: "Kathmandu",
+  options: [ "Kathmandu", " Colombo", " Dhaka", " Calcutta (Kolkata)" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT one of the methods of national income  estimation?",
+  answer: "Banking method",
+  options: [ "Income method", "Banking method", "Expenditure method", "Product method" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following Indian National Congress sessions was a pact signed between the Congress and Muslim League by which the separate electorates was accepted by both the parties?",
+  answer: " Lucknow 1916",
+  options: [ "Lucknow  1936", " Surat 1907", " Lahore 1929", " Lucknow 1916" ]
+},
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Select the INCORRECT statement about Agar.",
+  answer: " It is used as nutrient and source of fat of bacterial culture.",
+  options: [ "It is used in preparations of ice-creams and jellies.", " Agar is used to grow microbes.", " Agar-one of the commercial products obtained from red algae- gelidium and gracilaria.", " It is used as nutrient and source of fat of bacterial culture." ]
+},
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Compounds like gingerol, paradol, shogaols and zingerone are:",
+  answer: " antimicrobial compounds found in ginger",
+  options: [ "antimicrobial compounds found in turmeric", " antifungal compounds found in ginger", " antimicrobial compounds found in citrus fruits", " antimicrobial compounds found in ginger" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions that every religious denomination  or section shall have the right to own and acquire movable and immovable property?",
+  answer: " Article 26(c)",
+  options: [ "Article 26(d)", " Article 26(b)", " Article 26(a)", " Article 26(c)" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The battle of Plassey was fought between the East India Company, force headed by  Robert Clive, and the Nawab of Bengal, ________ in 1757.",
+  answer: " Siraj-Ud-Daulah",
+  options: [ "Shah Alam", " Mir Jafar", " Siraj-Ud-Daulah", " Mir Qasim" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who proposed the Law of Octaves ?",
+  answer: " Newland",
+  options: [ "Doberneir", " Newland", " Mendeleev", " Moseley" ]
+},
+
+
+
+
+
+
+
+{
+  question: "According to the Koppen climate classification system, ‘Am’ is the code for which type  of climate?",
+  answer: " Tropical monsoon climate",
+  options: [ "Humid subtropical climate", " Marine west coast climate", " Tropical monsoon climate", " Tropical wet and dry climate" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is the autobiography of Abul Kalam Azad, the first Education  Minister of free India?",
+  answer: " India Wins Freedom",
+  options: [ "The Road Ahead", " Unbreakable", " India Wins Freedom", " The Test of My Life" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Norman Borlaug is known as 'the father of Green Revolution' in the world. He belonged to which country?",
+  answer: " The US",
+  options: [ "Poland", " France", " The US", " Germany" ]
+},
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions about the recommendations of the  Finance Commission?",
+  answer: " Article 281",
+  options: [ "Article 284", " Article 283", " Article 282", " Article 281" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Towards the close of Chandragupta Maurya's rule, a terrible famine broke out in South Bihar. _______ and his disciples migrated to Sravanabelgola in Karnataka.",
+  answer: " Bhadrabahu",
+  options: [ "Jambu", " Indrabhuti", " Bhadrabahu", " Sthulabhadra" ]
+},
+
+
+
+
+
+
+
+{
+  question: "______ a native of Baghdad, wrote Akhbar al-zaman (❝ 𝐓𝐡𝐞 𝐇𝐢𝐬𝐭𝐨𝐫𝐲 𝐨𝐟 𝐓𝐢𝐦𝐞 ❞ )",
+  answer: " Al-Masudi",
+  options: [ "Abu al-Rayhan", " Abdur Razzak", " Al-Masudi", " Ibn Battuta" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year did Dr. Sarvepalli Radhakrishnan assume office as the first Vice- President of India?",
+  answer: " 1952",
+  options: [ "1950", " 1951", " 1954", " 1952" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The historical Sher Shah Suri Marg is called the National Highway no. ________  between Delhi and Amritsar.",
+  answer: " 1",
+  options: [ "9", " 1", " 3", " 7" ]
+},
+
+
+
+
+
+
+
+{
+  question: "When did the United Nations declare the World Physics Year, also known as the  Einstein Year, to mark the 100th anniversary of the physicist Albert Einstein?",
+  answer: " 2005",
+  options: [ "2006", " 2004", " 2005", " 2002" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The north-west region of India receives rainfall in winter due to:",
+  answer: " western disturbances",
+  options: [ "harsh cold and snow storms", " western disturbances", " eastern disturbances", " the summer monsoon" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Identify the INCORRECT pair of cell shape types and their examples.",
+  answer: " Oblong – Nerve cells",
+  options: [ "Elongated – Muscle cells", " Oval – Chlamydomonas", " Irregular – Amoeba", " Oblong – Nerve cells" ]
+},
+
+    ];
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,435 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-5           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [  
+    
+{
+    
+      question: "Which was the prominent architectural feature of the Indus Valley towns and cities?",
+    
+      answer: " Citadel",
+    
+      options: [" Pyramids", " Stupas", " Citadel", " False Arch"]
+    
+    },
+    
+    
+    
+    
+    
+    
+    
+    {
+    
+      question: "Who is credited with inventing the reflecting telescope?",
+    
+      answer: " Isaac Newton",
+    
+      options: [" Galileo Galilei", " Isaac Newton", " Johannes Kepler", " Christiaan Huygens"]
+    
+    },
+    
+    
+    
+    
+    
+    
+    
+    {
+    
+      question: "The Beating Retreat Ceremony during Republic Day is held every year at which of the  following places?",
+    
+      answer: " New Delhi",
+    
+      options: [" New Delhi", " Bengaluru", " Hyderabad", " Jaipur"]
+    
+    },
+    
+    
+    
+    
+    
+    {
+  
+  question: "The Vienna Convention is related to ____________.",
+  
+  answer: " protection of ozone layer",
+  
+  options: [ " sustainable agriculture", " Disposing of harmful electronic waste", " protection of wild life", " protection of ozone layer" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "The novel ‘Raavan - Enemy of Aryavarta’ is written by whom among the following  writers?",
+  
+  answer: " Amish Tripathi",
+  
+  options: [ " Amish Tripathi", " Ruskin Bond", " Salman Rushdie", " Kiran Desai" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "What is the growth rate of population of India as per census 2011?",
+  
+  answer: " 0.1764",
+  
+  options: [ " 0.2154", " 0.1894", " 0.2164", " 0.1764" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Select the correct statement.",
+  
+  answer: " The pyramid of energy is always upright.",
+  
+  options: [ " The pyramid of energy is always upright.", " The pyramid of number is always upright.", " The pyramid of biomass is always inverted.", " The pyramid of mass is always upright." ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following was discovered by GN Ramachandran?",
+  
+  answer: " Triple helical structure of collagen",
+  
+  options: [ " Golgi bodies", " Plasma membrane", " Triple helical structure of collagen", " Fluid mosaic model of a cell" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Using Fleming’s right-hand rule, in which direction will the current flow if the  direction of magnetic field is towards north and the conductor is moving vertically  upward?",
+  
+  answer: " Towards west",
+  
+  options: [ " Towards south", " Towards west", " Towards south-west", " Towards east" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "On 17 December 1928, Bhagat Singh, Azad and______ assaassinated Saunders, a police officer who was involved in the lathi-charge that has cause the death of LalaLajpat Rai",
+  
+  answer: " Rajguru",
+  
+  options: [ " Jogesh Chatterjee", " Ramprasad Bismil", " Sachindranath Sanyal", " Rajguru" ]
+  
+},
+
+
+
+
+
+{
+  
+  question: "Under which Article of the Indian Constitution are traffic in human beings and beggar  and other forms of forced labour prohibited?",
+  
+  answer: " Article 23",
+  
+  options: [ " Article 23", " Article 21", " Article 32", " Article 27" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Uppalapu Shrinivas was a _________ player who was awarded with the Padma Shri in  1998.",
+  
+  answer: " mandolin",
+  
+  options: [ " mandolin", " veena", " tabla", " violin" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "By which Constitutional Amendment was the voting age reduced from 21 years to 18 years?",
+  
+  answer: " 61st",
+  
+  options: [ " 61st", "69th", "58th", " 70th" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Who among the following Kushana kings was the founder of the Kushana dynasty?",
+  
+  answer: " Kujula Kadphises",
+  
+  options: [ " Huvishka", " Kujula Kadphises", " Vima Kadphises", " Vasudeva I" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "What is the percentage share of population working in agricultural sector as per  census of India 2011?",
+  
+  answer: " 0.546",
+  
+  options: [ " 0.567", " 0.58", " 0.503", " 0.546" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Under which of the following Mughal emperors were the Marathas a major challenge  to the sovereignty of the Mughals?",
+  
+  answer: " Aurangzeb",
+  
+  options: [ " Humayun", " Babur", " Aurangzeb", " Jahangir" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following is NOT considered a method of conservation of natural  resources?",
+  
+  answer: " Extraction",
+  
+  options: [ " Extraction", " Recycling", " Terrace farming", " Afforestation" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Industries of strategic and national importance are usually placed in the ________  sector.",
+  
+  answer: " Public",
+  
+  options: [ " Private", " Public", " Co-operative", " Joint" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Akham Lakshmi Devi was honoured with Sangeet Natak Akademi Award for the year  2018 for her contribution to _________ dance.",
+  
+  answer: " Manipuri",
+  
+  options: [ " Mohiniyattam", " Manipuri", " Sattriya", " Odissi" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which Article of the Indian Constitution mentions that there shall be a Supreme Court  of India?",
+  
+  answer: " Article 124",
+  
+  options: [ " Article 123", " Article 121", " Article 122", " Article 124" ]
+  
+},
+    
+    ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

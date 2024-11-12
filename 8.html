@@ -1,0 +1,359 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-8          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [  
+
+{
+  question: "In 1960s, two major programmes and were launched, popularly referred to as green revolution.",
+  answer: " Intensive Agriculture Area Programme (IAAP 1961); Intensive Agriculture Development Programme (IADP 1964)",
+  options: [ "Intensive Agriculture District Programme (IAAP 1961); Intensive Irrigation Programme (IIP 1964)", " Intensive Agriculture Area Programme (IAAP 1961); Intensive Agriculture Development Programme (IADP 1964)", " Intensive Agriculture District Programme (IADP 1961); Intensive Agriculture Area Programme (IAAP 1964)", " Intensive Irrigation Programme (IIP 1961); Intensive Agriculture District Programme (IADP 1964)" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the root-like structure at the base of an algae (seaweed) that binds the algae  to a hard substrate like a stone?",
+  answer: " Holdfast",
+  options: [ "Stipe", " Frond", " Midrib", " Holdfast" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Dang Darbar Fair is held every year in which Indian state?",
+  answer: " Gujarat",
+  options: [ "Rajasthan", " Madhya Pradesh", " Maharashtra", " Gujarat" ]
+},
+
+
+
+
+
+
+
+{
+  question: "73rd Amendment Act 1992 makes provisions for a 3-tier system of Panchayati Raj for  all the states having population of above:",
+  answer: " 20 lakh",
+  options: [ "5 lakh", " 15 lakh", " 10 lakh", " 20 lakh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the density of the population of India as per 2011 census?",
+  answer: "382 persons per square kilometre",
+  options: [ "383 persons per square kilometre", "381 persons per square kilometre", "384 persons per square kilometre", "382 persons per square kilometre" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following rivers is NOT related to the coastal plain of India?",
+  answer: " Brahmaputra",
+  options: [ "Krishna", " Kaveri", " Brahmaputra", " Mahanadi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was the Viceroy of British India when the Shimla conference  was held in 1945?",
+  answer: " Lord Wavell",
+  options: [ "Lord Irwin", " Lord Wavell", " Lord Linlithgow", " Warren Hastings" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Lad Khan Temple at Aihole in Karnataka is an example of which of the following styles  of temple architecture?",
+  answer: " Vesara",
+  options: [ "Nagara", " Vesara", " Pagoda", " Dravida" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Chromosomes found in the salivary glands of Drosophila are:",
+  answer: " giant chromosome lampbrush",
+  options: [ "giant chromosome polytene", " presence of fat digestive enzymes", " giant chromosome lampbrush", " presence of minute chromosomes" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which clause of Article 51A of the Constitution of India renounces the practices derogatory to the dignity of women?",
+  answer: " Clause e",
+  options: [ "Clause b", " Clause e", " Clause c", " Clause f" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Padma Shri Awardee Gosaveedu Shaik Hassan is known for playing:",
+  answer: " Nadaswaram",
+  options: [ "Violin", " Ghatam", " Veena", " Nadaswaram" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which triangular plateau region of India lies south of the river Narmada?",
+  answer: "Deccan plateau",
+  options: [ "Deccan plateau", " Bagelkhand plateau", " Marwar plateau", " Malwa plateau" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following does NOT come under the Concurrent List?",
+  answer: " Artificial Habitats",
+  options: [ "Population Control", " Medical Education", " Protection of Wildlife", " Artificial Habitats" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which is the deepest point of Earth's oceans with a depth of 11,022 metres?",
+  answer: " Pacific Ocean's Mariana Trench",
+  options: [ "Indian Ocean's Java Trench", " Pacific Ocean's Mariana Trench", " Arctic Ocean's Eurasian Basin", " Atlantic Ocean's Puerto Rico Trench" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution makes it clear that Directive Principles of  State Policy are fundamental in the governance of the country and it shall be the duty  of the state to apply these principles in making laws?",
+  answer: " Article 37",
+  options: [ "Article 40", " Article 46", " Article 37", " Article 44" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Keoladeo National Park is located in the state of _______.",
+  answer: " Rajasthan",
+  options: [ "Madhya Pradesh", " Odisha", " Rajasthan", " Gujarat" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following types of unemployment arises from a mismatch between the  jobs available in the market and the skills of the available workers in the market?",
+  answer: " Structural",
+  options: [ "Disguised", " Frictional", " Structural", " Seasonal" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following does not takes into account the Depreciation ?",
+  answer: " GNP",
+  options: [ "NDP", " NNP", " GNP", " PPP" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The highly viscous, mechanically-weak and ductile region of Earth's upper mantle is  called:",
+  answer: " asthenosphere",
+  options: [ "lithosphere", " mesosphere", " asthenosphere", " exosphere" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the Atomic no. of Mendelevium ?",
+  answer: " 101",
+  options: [ "100", " 101", " 104", " 106" ]
+},
+
+    ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

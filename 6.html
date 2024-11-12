@@ -1,0 +1,368 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-6          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [  
+
+
+
+{
+  
+  question: "Which of the following is NOT a poverty alleviation programme in India?",
+  
+  answer: " Namami Gange",
+  
+  options: [ " Rural Employment Generation Programme (REGP)", " Sampoorna Grameen Rozgar Yojana (SGRY)", " Namami Gange", " Rural Housing - Indira Awaas Yojana (IAY)" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following kings took the title of ‘Dakshinapatheshvara’ (lord of the  south) after defeating Harshvardhan?",
+  
+  answer: " Pulakeshin II",
+  
+  options: [ " Mahendravarman", " Narasimhavarman I", " Pulakeshin II", " Rudrasena II" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Flowerless plants, naked seeds, needle like leaves and cones as reproductive structure  are the characteristics of:",
+  
+  answer: " gymnosperms",
+  
+  options: [ " bryophyta", " gymnosperms", " angiosperms", " pteridophyta" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "In which of the following state chhau dance is generally NOT perfomed?",
+  
+  answer: " Tamil Nadu",
+  
+  options: [ " Odisha", " West Bengal", " Jharkhand", " Tamil Nadu" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following Sultans of Delhi set up the officers like Barid (intelligence  officer) and Munhiyans (secret spies) to control the market?",
+  
+  answer: " Alauddin Khalji",
+  
+  options: [ " Muhammad Bin Tughlaq", " Ghiyasuddin Balban", " Alauddin Khalji", " Shamsuddin Iltutmish" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Under which Schedule of the Indian Constitution is the form of oath or affirmation for  a Judge of the Supreme Court mentioned?",
+  
+  answer: "1Third Schedule",
+  
+  options: [ "1Third Schedule", " First Schedule", " Second Schedule", " Fourth Schedule" ]
+  
+},
+
+
+
+
+{
+  question: "In 1908 Khudiram Bose along with _________ was involved in throwing a bomb at a  carriage believing it to be occupied by Kingsford, the then sitting judge of Muzaffarpur.",
+  answer: " Prafulla Chaki",
+  options: [ "Bhagat Singh", " Prafulla Chaki", " Sukhdev", " Rajguru" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following kings of Tuluva dynasty assumed the title of ‘Yavanarajya Sthapanacharya’?",
+  answer: " Krishnadevaraya",
+  options: [ "Rama Raya", " Krishnadevaraya", " Sadasiva Raya", " Achyuta Deva Raya" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following features of the Indian Constitution was NOT borrowed from the US constitution?",
+  answer: " Single Citizenship",
+  options: [ "Independence of Judiciary", " Fundamental Right", " Judicial Review", " Single Citizenship" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Shore temple of Mamallapuram was built by:",
+  answer: " Pallavas",
+  options: [ "Cholas", " Chalukayas", " Pallavas", " Nagas" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is the earliest literary record of Indian culture?",
+  answer: " Rigveda",
+  options: [ "Atharvaveda", " Yajurveda", " Samaveda", " Rigveda" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following states of India is the largest salt water lake, the Chilika lake,  located?",
+  answer: " Odisha",
+  options: [ "Andhra Pradesh", " Tamil Nadu", " Odisha", " Kerala" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions that ‘In the performance of his/her  duties, the Attorney-General for India shall have the right of audience in all the courts  in the territory of India’?",
+  answer: " Article 76(3)",
+  options: [ "Article 76(4)", " Article 76(2)", " Article 76(1)", " Article 76(3)" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Tertiary coals occur in which of the following states in India?",
+  answer: "Meghalaya",
+  options: [ "Meghalaya", " Haryana", " Uttarakhand", " Bihar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Dr.Teejan Bai, a Padma Shri, Padma Bhushan and Padma Vibhushan awardee is globally recognised for her contribution to which of the following art forms?",
+  answer: "Pandavani",
+  options: [ "Pandavani", " Raut Nacha.", " Panthi", " Gendi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In the context of movement of cells, exocytosis is the process by which:",
+  answer: " cells move waste materials from within the cell into the extracellular fluid",
+  options: [ "cell death is brought about through a heavily regulated sequence of events", " cells move waste materials from within the cell into the extracellular fluid", " cells absorb external material by engulfing it with the cell membrane", " a cell takes in the fluids along with dissolved small molecules" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Atal Tunnel connects which two places?",
+  answer: "Manali and Lahaul-Spiti valley",
+  options: [ "Manali and Lahaul-Spiti valley", " Shimla and Nainital", " Manali and Nainital", " Shimla and Mansoori" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Moatsu festival of Nagaland is celebrated by which of the following tribes?",
+  answer: " Ao tribe",
+  options: [ "Bodo tribe", " Munda tribe", " Bhil tribe", " Ao tribe" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Vedantam Satyanarayana Sarma is associated with which of these dances?",
+  answer: " Bharatanatyam",
+  options: [ "Manipuri", " Kuchipudi", " Kathak", " Bharatanatyam" ]
+},
+
+
+    ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

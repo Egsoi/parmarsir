@@ -1,0 +1,335 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-13          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+  let questions = [  
+
+{
+  question: "Which of the following Articles talks about the Ancillary Powers of Supreme Court ?",
+  answer: "140",
+  options: [ "140", " 141", " 142", " 143" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The likelihood of a neutral atom gaining an electron is known as:",
+  answer: "electron affinity",
+  options: [ "electron affinity", " electro positivity", " electronegativity", " electro attraction" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The word ________ means a body of persons that looks after the implementation of  rules and regulations in actual practice.",
+  answer: " Executive",
+  options: [ "Bureaucracy", " Legislature", " Judiciary", " Executive" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following is associated with the Theosophical Society?",
+  answer: " Annie Besant",
+  options: [ "Savitri Bai Phule", " Sarojini Naidu", " Tarabai Shinde", " Annie Besant" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Developmental Expenditure comes under which part of the Budget ?",
+  answer: " Capital Expenditure",
+  options: [ "Revenue Expenditure", " Capital Expenditure", " Plan Expenditure", " Non Plan Expenditure" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the adulterant of hot paprika?",
+  answer: " Sudan dye",
+  options: [ "Chalk powder", " Saw dust", " Sudan dye", " Starch powder" ]
+},
+
+
+
+
+
+
+
+{
+  question: "❝ 𝐌𝐨𝐡𝐚𝐧 𝐒𝐡𝐲𝐚𝐦 𝐒𝐡𝐚𝐫𝐦𝐚 ❞  is a famous musician associated with the :",
+  answer: " Pakhawaj",
+  options: [ "Drums", " Tabla", " Pakhawaj", " Sarod" ]
+},
+
+
+
+
+
+
+
+{
+  question: "How many Lok Sabha seats are there for the state of Meghalaya?",
+  answer: " Two",
+  options: [ "Three", " Four", " One", " Two" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In context of panchvrata in Jainism, which of the following means non-stealing?",
+  answer: " Asteya",
+  options: [ "Brahmacharaya", " Asteya", " Aparigraha", " Ahimsa" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In the context of British rule in India, who among the following Governor-Generals created a professional cadre of company servants making provisions for them for generous salaries?",
+  answer: " Lord Cornwallis",
+  options: [ "Lord Dalhousie", " Lord Cornwallis", " Lord Mayo", " Warren Hastings" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was chosen by Shahjahan as his successor to the Mughal  throne?",
+  answer: "Dara Shikoh",
+  options: [ "Dara Shikoh", " Aurangzeb", " Murad Bakhsh", " Shah Shuja" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which report is NOT associated with Fundamental Rights?",
+  answer: " Sarkaria Commission Report",
+  options: [ "Tej Bahadur Sapru Report", " Motilal Nehru Report", " Sarkaria Commission Report", " JB Kripalani Report" ]
+},
+
+
+
+
+
+
+
+{
+  question: "By the Act of _________, the Governor General in Council was given the power to  legislate for the whole of the British territories in India.",
+  answer: " Charter Act of 1833",
+  options: [ "Charter Act of 1813", " Charter Act of 1833", " Charter Act of 1853", " Charter Act of 1793" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Cricket became an international game with the formation of the Imperial Cricket Conference (ICC) in the year _______",
+  answer: " 1909",
+  options: [ "1947", " 1951", " 1921", " 1909" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements is correct?",
+  answer: " Chemically rust is hydrated ferric oxide.",
+  options: [ "Zinc oxide is a form of rust.", " Chemically rust is hydrated ferric oxide.", " Chemically rust is non-hydrated ferric oxide.", " Copper can also turn into rust upon hydration." ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following dynasties of Delhi Sultanate founded Agra city?",
+  answer: "Lodi dynasty",
+  options: [ "Lodi dynasty", " Sayyid dynasty", " Khalji dynasty", " Tughluq dynasty" ]
+},
+
+
+
+
+
+
+
+{
+  question: "When was the 8th round of the General Agreement on Tariffs and Trade (GATT), the so-called ‘Uruguay Round’ which led to the establishment of World Trade Organization (WTO) completed?",
+  answer: " 1994",
+  options: [ "1992", " 1993", " 1991", " 1994" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The ________ birth rate indicates the number of live births occurring during the year per 1000 population estimated at midyear.",
+  answer: " crude",
+  options: [ "neutral", " positive", " negative", " crude" ]
+},
+
+    ];
+    
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

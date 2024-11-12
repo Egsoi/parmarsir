@@ -1,0 +1,339 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-16           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "The entire salaries, allowances and pensions of the chairman and members of the  Union Public Service Commission are charged on the ________.",
+  answer: " Consolidated fund of India",
+  options: [ "Contingency fund of India", " Reserve Bank of India", " Consolidated fund of India", " Special Fund of the UPSC" ]
+},
+
+
+
+
+
+
+
+{
+  question: "How many Mahajanapadas were there during the age of Buddha?",
+  answer: " 16",
+  options: [ "15", " 26", " 9", " 16" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who was the founder of Jaipur -Atrauli gharana?",
+  answer: "Alladiya Khan",
+  options: [ "Alladiya Khan", " Omkarnath Thakur", " Abdul Karim Khan", " Ali Baksh Khan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following cell organelles is involved in apoptosis?",
+  answer: " Mitochondria",
+  options: [ "Golgi", " ER", " Lysosome", " Mitochondria" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The tall sculptures on the Bharhut Stupa are the depictions of ____________.",
+  answer: " Yakshas and Yakshinis",
+  options: [ "Mahavira", " Bodhisattvas", " Buddha", " Yakshas and Yakshinis" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Rajataranagini, the book authored by Kalhana in 12th Century was originally written in  which of the following languages?",
+  answer: " Sanskrit",
+  options: [ "Shaurseni", " Sanskrit", " Tamil", " Telugu" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Among the choices listed, which one is NOT a form of cancer?",
+  answer: "Glaucoma",
+  options: [ "Glaucoma", " Sarcoma", " Lymphoma", " Carcinoma" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What will be the average kinetic energy per molecule in SI units for an ideal gas at a temperature of 25°C?",
+  answer: "6.17 x 10-²¹ J",
+  options: [ "6.17 x 10-²¹ J", "9.17 x 10-²² J", "8.17 x 10-²²J", "7.17 x 10-²⁰ J" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following holy days in Christianity is a mourning day?",
+  answer: "Easter",
+  options: [ "Easter", " Maundy Thursday", " Christmas", " Good Friday" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the name of the cold phase of the ENSO climate pattern that describes the unusual cooling of the surface waters of the region?",
+  answer: " La Nina",
+  options: [ "ENSO-neutral", " NINO-3 region", " La Nina", " Trans-Nino" ]
+},
+
+
+
+
+
+
+
+{
+  question: "How many players from one team can play in a Kabaddi match at a time?",
+  answer: " 7",
+  options: [ "8", " 7", " 9", " 10" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following options represents the total income earned by individuals from all the sources before deduction of personal income taxes?",
+  answer: " Gross income",
+  options: [ "Personal income", " Disposable income", " National income", " Gross income" ]
+},
+
+
+
+
+
+
+
+{
+  question: "From which of the following epics did the Garadi folk dance of Puducherry originate?",
+  answer: "Ramayana",
+  options: [ "Ramayana", " Mahabharata", " Panchatantra", " Hitopadesha" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Sashastra Seema Bal is the lead intelligence unit for the ________ and Bhutan borders and the coordinating agency for national security activities.",
+  answer: " Nepal",
+  options: [ "Pakistan", " Myanmar", " Bangladesh", " Nepal" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following has written the 'Badshah Nama'?",
+  answer: "Abdul Hamid Lahori",
+  options: [ "Abdul Hamid Lahori", " Inayat Khan", " Abul Fazl", " Babur" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Biotic potential can be defined as:",
+  answer: "the maximum number of individuals a species can produce",
+  options: [ "the maximum number of individuals a species can produce", " the minimum number of individuals of a species that can survive but cannot  reproduce", " the minimum number of individuals a species can produce", " the maximum number of individuals of a species that cannot survive after birth" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a possible criticism of privatisation?",
+  answer: " Limited access to essential services for marginalised populations",
+  options: [ "Excessive government interference into private businesses", " Expansion of bureaucracy and efficiency in public enterprises", " Reduced competition and innovation in the market", " Limited access to essential services for marginalised populations" ]
+},
+
+
+
+
+
+
+
+      ];
+      
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

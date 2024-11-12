@@ -1,0 +1,384 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">               </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [   
+    
+    {
+  
+  question: "Gandhiji gave his slogan of ‘Do or Die’ during which of the following  Movements/Satyagrahas?",
+  
+  answer: "Quit India",
+  
+  options: [ "Kheda Satyagraha", "Quit India", "Champaran Satyagraha", "Civil Disobedience" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which physicist is best known for his experiments on generating and  confirming the existence of electromagnetic waves?",
+  
+  answer: "Heinrich Rudolf Hertz",
+  
+  options: [ "Heinrich Rudolf Hertz", "Albert Einstein", "Isaac Newton", "JJ Thomson" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "________ is the proper management of a natural resource to prevent its  exploitation, destruction or degradation.",
+  
+  answer: "Conservation",
+  
+  options: [ "Protection", "Degradation", "Preservation", "Conservation" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which Article of the Indian Constitution mentions that an election to fill a vacancy caused by the expiration of the term of office of the President shall be completed before the expiration of the term?",
+  
+  answer: "Article 62",
+  
+  options: [ "Article 61", "Article 62", "Article 60", "Article 59" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Pandit Ram Narayan, who was awarded the Pandit Bhimsen Joshi Lifetime  Achievement Award for 2015–2016, is a _______ player.",
+  
+  answer: "sarangi",
+  
+  options: [ "violin", "sarangi", "flute", "sarod" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Who was the designer of India’s national flag ?",
+  
+  answer: "Pingali Venkayya",
+  
+  options: [ "Prem Behari Narain Raizada", "KM Munshi", "Pingali Venkayya", "BN Rau" ]
+  
+},
+
+
+
+{
+  
+  question: "Who among the following authored the book ❝ 𝐔𝐧𝐛𝐫𝐞𝐚𝐤𝐚𝐛𝐥𝐞 ❞ ?",
+  
+  answer: "Mary Kom",
+  
+  options: [ "Indra Nooyi", "Mary Kom", "Shantanu Naidu", "Kapil Dev" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Who among the following founded the Khudai Khidmatgars or the Red  Shirts, a powerful non-violent movement?",
+  
+  answer: "Khan Abdul Ghaffar Khan",
+  
+  options: [ "Mahatma Gandhi", "Khan Abdul Ghaffar Khan", "BR Ambedkar", "Subhas Chandra Bose" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "The Ryotwari system, devised by Thomas Munro, in which peasant cultivators  had to pay annual taxes directly to the government, was prevalent in which of  the following present-day states/provinces?",
+  
+  answer: "Tamil Nadu",
+  
+  options: [ "Tamil Nadu", "Punjab", "Rajasthan", "Odisha" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which of the following statements about the Kushana dynasty is INCORRECT?",
+  
+  answer: "The First Buddhist Council was organised by Kanishka.",
+  
+  options: [ "The First Buddhist Council was organised by Kanishka.", "The Kushanas were a major ruling group in the post-Mauryan period.", "Asvaghosha-the author of the Buddhacharita- was the court poet of Kanishka.", "Many Kushana rulers also adopted the title ‘devaputra’-or ‘son of god’." ]
+  
+},
+    
+    
+    
+    
+    {
+  
+  question: "Mahatma Gandhi National Rural Employment Guarantee Act (2005)  provides work for how many days?",
+  
+  answer: "100",
+  
+  options: [ "200", "300", "150", "100" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Which cell organelle is found in both Prokaryotic & Eukaryotic cell.",
+  
+  answer: "Ribosome",
+  
+  options: [ "Mitochondria", "Nucleus", "Ribosome", "Vacuoles" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Select the INCORRECT combination of folk dance and its respective state.",
+  
+  answer: "Paika – Kerala",
+  
+  options: [ "Dhangari Gaja - Maharashtra", "Dollu Kunitha - Karnataka", "Paika – Kerala", "Dandiya Raas– Gujarat" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Siddheshwar Mahadev Temple located in Bengal reflects the architecture of which dynasty?",
+  
+  answer: "Pala Dynasty",
+  
+  options: [ "Pala Dynasty", "Hussein Shahi Dynasty", "Chalukya Dynasty", "Shunga Dynasty" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "Who was the first Arjuna Award winner in Kabaddi ?",
+  
+  answer: "Sahanand Mahadev Shetty",
+  
+  options: [ "Sahanand Mahadev Shetty", "Manjeet Chhillar", "BC Ramesh", "Bholanath Guin" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "With which sport is the B.C. Roy Trophy associated?",
+  
+  answer: "Football",
+  
+  options: [ "Football", "Boxing", "Powerlifting", "Weightlifting" ]
+  
+},
+
+
+
+
+
+
+
+{
+  
+  question: "By which Indian Constitutional Amendment Act was the 11th fundamental duty added in the Indian Constitution",
+  
+  answer: "86th Constitutional Amendment Act",
+  
+  options: [ "87th Constitutional Amendment Act", "86th Constitutional Amendment Act", "85th Constitutional Amendment Act", "88th Constitutional Amendment Act" ]
+  
+},
+    
+    ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

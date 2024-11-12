@@ -1,0 +1,351 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-21          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+    let questions = [
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions about the right of the Governor to  address and to send messages to the House (or Houses) of the state legislature?",
+  answer: " Article 175",
+  options: [ "Article 171", " Article 175", " Article 172", " Article 176" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was granted the title of ‘Chief of the Merchants’ or  Malikut-Tujjar by the Bahamani ruler, Humayun Shah?",
+  answer: " Mahmud Gawan",
+  options: [ "Ahmad III", " Aladdin Imad Shah", " Mahmud Gawan", " Yusuf Adil Shah" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a feature of globalisation?",
+  answer: " Liberalisation of import licensing",
+  options: [ "Self-reliance", " Restrictions on expansion of public sector", " Liberalisation of import licensing", " Disinvestment" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Reserve ratio and money supply have ________ relationship.",
+  answer: " a negative",
+  options: [ "no", " a negative", " a linear", " a symmetrical" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Choose the correct statements about the islands of India.",
+  answer: "It is believed that Andaman and Nicobar islands are an elevated portion of submarine  mountains.",
+  options: [ "Lakshadweep Islands are composed of coral islands.", "Andaman and Nicobar islands are composed of coral islands.", "It is believed that Lakshadweep islands are an elevated portion of submarine mountains.", "It is believed that Andaman and Nicobar islands are an elevated portion of submarine  mountains." ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the height of the stump from the ground in cricket?",
+  answer: " 28 inch",
+  options: [ "27 inch", " 25 inch", " 28 inch", " 26 inch" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT a type of a fold mountain?",
+  answer: " The Rhine Valley",
+  options: [ "Aravali range", " The Rhine Valley", " Appalachians", " Ural Mountains" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following polyhalogen compounds is used in the production of the freon refrigerant R-22?",
+  answer: "Chloroform",
+  options: [ "Chloroform", " Carbon Tetrachloride", " Methylene Chloride", " Dichlorodiphenyltrichloroethane" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is correctly matched?",
+  answer: " Sultan Khan  – Sarangi",
+  options: [ "Zakir Husain  – Sitar", " Sultan Khan  – Sarangi", " Bismillah Khan  – Tabla", " Hariprasad Chaurasia – Sarod" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which is an integral membrane protein that forms the tetramer and facilitates the  diffusion of water and some small, unmodified solutes across cellular membranes?",
+  answer: " Aquaporins",
+  options: [ "Immunoglobulins", " Mucins", " Transferrin", " Aquaporins" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statement/statements is/are true regarding the light year?",
+  answer: " A light year is the distance that light travels in one Earth year.",
+  options: [ "Light year is a unit of intensity.", " Light is a unit of time.", " A light year is the distance that light travels in one Earth year.", " Light year is the measurement of light intensity." ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following is a distinguished and experienced scion of the famous  Kavungal family associated with ‘Kathakali’ for six generations?",
+  answer: " Chathunni Panicker",
+  options: [ "Padma Subramanyam", " Ammannur Madhava Chakyar", " Chathunni Panicker", " Meenakshi Sundaram Pillai" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions about the salaries and allowances of the Chairman and Deputy Chairman of the Rajya Sabha and the Speaker and Deputy Speaker of the Lok Sabha?",
+  answer: " Article 97",
+  options: [ "Article 92", " Article 97", " Article 94", " Article 95" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Identify the device used to change the resistance in an electric circuit.",
+  answer: " Rheostat",
+  options: [ "Ammeter", " Rheostat", " Conductor", " Voltmeter" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a selective credit instrument?",
+  answer: "CRR",
+  options: [ "CRR", " Bank rate", " Variable reserve ratio", " Credit rationing" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the pH of human blood?",
+  answer: "7.4",
+  options: [ "6.5",  "5.8", "10", "7.4" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Anup Rag Vilas’ is a book written by which of the following musicians?",
+  answer: "Pandit Kumar Gandharva",
+  options: [ "Pandit Kumar Gandharva", " Pandit Jasraj", " Pandit Birju Maharaj", " Pandit Dinkar Kaikini" ]
+},
+
+
+
+
+
+
+
+{
+  question: "______ diseases last for only shorter periods of time",
+  answer: " Acute",
+  options: [ "Hereditary", " Chronic", " Acute", " Genetic" ]
+},
+
+
+
+
+
+
+
+
+
+
+
+
+      ];
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

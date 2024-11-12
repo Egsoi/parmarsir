@@ -1,0 +1,387 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-26           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "1857 Revolt started from which place ?",
+  answer: " Meerut",
+  options: [ "Kanpur", " Lucknow", " Meerut", " Dekhi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution states that “There shall be a High Court for  each state”?",
+  answer: " Article 214",
+  options: [ "Article 275", " Article 245", " Article 214", " Article 125" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Indian National Congress formally took up the Swadeshi call in its Benaras session of 1905 under the presidentship of_________.",
+  answer: " Gopal Krishna Gokhale",
+  options: [ "Jawahar Lal Nehru", " Rajendra Prasad", " Motilal Nehru", " Gopal Krishna Gokhale" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following books is written by Rabindranath Tagore?",
+  answer: " Nationalism",
+  options: [ "Non-Violent Resistance", " The Essential Writings", " The Way to God", " Nationalism" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements is NOT correct about River Ganga?",
+  answer: " The water level of River Ganga never depends on monsoon and climatic condition of the  Himalaya.",
+  options: [ "River Ganga flows from the Himalayas all the way to the Bay of Bengal.", " River Ganga in India is more than 2500 km long and is the most populated river basin in  the world.", " River Ganga and its river basin support lots of wonderful wildlife particularly river  dolphins otters freshwater turtles and gharials.", " The water level of River Ganga never depends on monsoon and climatic condition of the  Himalaya." ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements about privatisation is FALSE?",
+  answer: " There is no possibility of exploitation of monopoly power by private companies after  privatisation.",
+  options: [ "There was an increase in the cases of disinvestment after the economic reforms of  1991 as compared to the pre-1991 period.", " Improved performance is one of the advantages of privatisation.", " Maruti Udyog Limited was a public sector enterprise before the 1991 economic  reforms.", " There is no possibility of exploitation of monopoly power by private companies after  privatisation." ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was the Marris College of Music established in India?",
+  answer: "1926",
+  options: [ "1926", " 1901", " 1919", " 1922" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a part of apical meristem found in roots.",
+  answer: "Protoderm",
+  options: [ "Leaf primordium", "Protoderm", "Differentiating vascular tissue", "Axillary bud" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following dynasties' genealogy was found in the Bijolia inscription?",
+  answer: " Chahamana",
+  options: [ "Chandela", " Chahamana", " Parmara", " Gahadavala" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Articles was amended by The Constitution Fiftieth Amendment  Act, 1984?",
+  answer: " Article 33",
+  options: [ "Article 78", " Article 56", " Article 99", " Article 33" ]
+},
+
+
+
+
+
+
+
+{
+  question: "'Chang dance' is popular in the state of:",
+  answer: " Rajasthan",
+  options: [ "Tripura", " Goa", " Bihar", " Rajasthan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "A distinctive cross-shaped constellation best seen in the northern hemisphere during  the summer and fall months around September is:",
+  answer: " Cygnus",
+  options: [ "Ursa Major", " Pegasus", " Cygnus", " Cassiopeia" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year did Johannes Nicolaus Bronsted and Thomas Martin Lowry propose the fundamental concept of acids and bases?",
+  answer: " 1923",
+  options: [ "1928", " 1925", " 1921", " 1923" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following states are the Pai songs accompanied by the Saria dance sung during the rain festivals?",
+  answer: " Madhya Pradesh",
+  options: [ "Uttar Pradesh", " Tripura", " Sikkim", " Madhya Pradesh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In hockey, what is the meaning if the umpire signals by pointing both arms  horizontally toward the centre of the field?",
+  answer: "Goal scored",
+  options: [ "Goal scored", " Ball out of play", " Timing", " Bully" ]
+},
+
+
+
+
+
+
+
+{
+  question: "A cyclone is known by different names in different parts of the world. In  Philippines it is called as ______.",
+  answer: " typhoon",
+  options: [ "mango shower", " hurricane", " willy-willy", " typhoon" ]
+},
+
+
+
+
+
+
+
+{
+  question: "National Dairy Research Institute is located at:",
+  answer: " Karnal",
+  options: [ "Lucknow", " Palampur", " Anand", " Karnal" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The ______ of a ray is the angle measured from the reflected ray to the normal  surface.",
+  answer: " Angle of Reflection",
+  options: [ "Angle of Diffusion", " Angle of Reflection", " Angle of Incidence", " Angle of Refraction" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Raman wants to use a rear-view mirror in his vehicle. Which type of mirror  should he pick for it?",
+  answer: "Convex Mirrors",
+  options: [ "Convex Mirrors", " Plane Mirrors", " Cylindrical Mirrors", " Concave Mirrors" ]
+},
+
+
+
+
+
+
+
+{
+  question: "National Dairy Research Institute is located at:",
+  answer: " Karnal",
+  options: [ "Lucknow", " Palampur", " Anand", " Karnal" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which among the following peaks is the highest peak of Jharkhand?",
+  answer: " Parasnath",
+  options: [ "Kangto", " Girnar", " Anamudi", " Parasnath" ]
+},
+
+
+
+      ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

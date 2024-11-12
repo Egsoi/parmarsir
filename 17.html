@@ -1,0 +1,351 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-17           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "Sree Narayana Guru considered the differences based on caste and religion as meaningless and advocated the principle of ‘One Caste, one Religion and one God’ for all. He belonged to which of the following organisations?",
+  answer: " Sree Narayana Dharma Paripalana Yogam",
+  options: [ "Veda Samaj", " Sree Narayana Dharma Paripalana Yogam", " Brahmo Samaj", " Arya Samaj" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Peshwa signed the treaty of Bassein with the East India Company?",
+  answer: " Baji Rao II",
+  options: [ "Raghunath Rao", " Narayan Rao", " Baji Rao II", " Madhav Rao" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT an alkaline earth metal?",
+  answer: "Na",
+  options: [ "Na", " Mg", " Ca", " Be" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Sisodiya ruler of Mewar, Amar Singh, accepted Mughal service during the reign of  ___________.",
+  answer: " Jahangir",
+  options: [ "Shah Jahan", " Akbar", " Aurangzeb", " Jahangir" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In 1962, who published 'The History of Ocean Basins', which outlined the theory of  how tectonic plates could move, later called 'sea floor spreading'?",
+  answer: " Harry Hammond Hess",
+  options: [ "Louis Bauer", " Alfred Wegener", " George Edward Backus", " Harry Hammond Hess" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following states has the largest net-out migrants?",
+  answer: " Uttar Pradesh",
+  options: [ "Haryana", " Maharashtra", " Uttar Pradesh", " Gujarat" ]
+},
+
+
+
+
+
+
+
+{
+  question: "NALCO is an Indian government enterprise, dealing with which of the following  minerals?",
+  answer: " Bauxite",
+  options: [ "Copper", " Iron", " Bauxite", " Mica" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Mangrove forests of West Bengal are also called:",
+  answer: "Sunderbans",
+  options: [ "Sunderbans", " Shisham", " Sholas", " Sai" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which article talks about Reports of public Service Commission ?",
+  answer: " Article 323",
+  options: [ "Article 318", " Article 320", " Article 322", " Article 323" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which law was studied in the year 1787, in which it was said that as the volume of a  gas increases its absolute temperature, if its absolute temperature decreases, then its  volume will decrease?",
+  answer: "Charles's law",
+  options: [ "Charles's law", " Dalton’s law", " Boyle’s law", " Avogadro’s law" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which device was invented by Carl Friedrich Gauss and Wilhelm Eduard Weber in 1833?",
+  answer: " Electromagnetic telegraph",
+  options: [ "Transistor", " Electromagnetic telegraph", " Optical maser", " Particle accelerator" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Most centrioles have a _____ structure of triple microtubules, which are present in pairs and arranged orthogonally after duplication.",
+  answer: " 9 + 0",
+  options: [ "9 + 3", " 6 + 1", " 9 + 0", " 8 + 0" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The golden revolution in India related to the agriculture sector is referred to as:",
+  answer: " horticulture and honey",
+  options: [ "cashew cultivation", " coconut production", " horticulture and honey", " minerals" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following articles lays down for protection from self-incrimination i.e. protection from standing trial against oneself?",
+  answer: " Article 20",
+  options: [ "Article 17", " Article 19", " Article 18", " Article 20" ]
+},
+
+
+
+
+
+
+
+{
+  question: "According to article 112 of Indian constitution, who shall cause in every financial year a statement of estimated receipts and expenditure of the Government of India?",
+  answer: " President",
+  options: [ "Speaker", " President", " Prime Minister", " Vice President" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Barabar Cave, famously known for depicting Ashokas' inscription, is situated at_______.",
+  answer: " Gaya- Bihar",
+  options: [ "Sanchi-Madhya Pradesh", " Rampurva-Bihar", " Gaya- Bihar", " Sarnath-Uttar Pradesh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the name of the large-scale demographic survey conducted to provide reliable estimates of birth and death rates and other fertility and mortality indicators at the national and sub-national levels?",
+  answer: "Sample Registration System (SRS)",
+  options: [ "Sample Registration System (SRS)", " Enumeration of Human Resource system (EHRS)", " Direct Recruitment System (DRS)", " Creation and bifurcation System (CBS)" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In 1883, which of the following allowed Indians to try Europeans in courts of law?",
+  answer: " Ilbert Bill",
+  options: [ "Christian Personal Law", " Ilbert Bill", " Indian Penal Code", " Murderous Outrage Regulation" ]
+},
+
+
+
+
+
+      ];
+      
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

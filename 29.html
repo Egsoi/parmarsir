@@ -1,0 +1,427 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-29          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+{
+  question: "Through which constitutional amendment NCSC was formed ?",
+  answer: " 89th",
+  options: [ "69th", " 89th", " 52nd", " None" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following persons was appointed Chairman of the Second National Judicial Pay  Commission?",
+  answer: "Justice PV Reddi",
+  options: [ "Justice PV Reddi", " Justice JS Verma", " Justice AS Anand", " Justice R Basant" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is issued by commercial banks at a discount on face value?",
+  answer: " Certificates of deposits",
+  options: [ "Treasury bills", " Certificates of deposits", " Commercial papers", " Promissory notes" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Name the Chola inscription that provided details of the way in which the sabha was organised in the local administration in the Chola empire.",
+  answer: " Uttaramerur inscription",
+  options: [ "Thirunanthikarai inscription", " Thiruvalangadu inscription", " Uttaramerur inscription", " Darsanam Koppu inscription" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The demand curve that a firm faces in a perfectly competitive market is .",
+  answer: " Perfectly Elastic",
+  options: [ "Elastic", " Inelastic", " Perfectly Elastic", " Perfectly Inelastic" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In 1960, which isotope was used to define the standard measure of length?",
+  answer: "Krypton-86",
+  options: [ "Krypton-86", " Krypton-90", " Krypton-88", " Krypton-83" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Where was India House formed ?",
+  answer: " London",
+  options: [ "Delhi", " San Francisco", " London", " New York" ]
+},
+
+
+
+
+
+
+
+{
+  question: "______ is a musical composition that expresses devotion through madhura bhakti.",
+  answer: "Padam",
+  options: [ "Padam", " Gita", " Tillana", " Kriti" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which is, by far, the closest dwarf planet orbiting at only 8 times Earth's distance from the  sun?",
+  answer: " Ceres",
+  options: [ "Makemake", " Pluto", " Ceres", " Eris" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following disease caused due to Trypanosoma .",
+  answer: " Sleeping Sickness",
+  options: [ "Kala Azar", " Sleeping Sickness", " Plague", " Karsauff Syndrome" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In honey bees, _____",
+  answer: "males are haploid and females are diploid.",
+  options: [ "males are haploid and females are diploid.", " males are tetraploid and females are triploid.", " males are triploid and females are tetraploid.", " males are diploid and females are haploid." ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the Mendel's laws states that a diploid organism passes a randomly selected allele  for a trait to its offspring, such that the offspring inherit one allele from each parent?",
+  answer: " Law of segregation",
+  options: [ "Law of independent assortment", " Law of dominance", " Law of paired factor", " Law of segregation" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which country is the 'Kachin Manaw Festival' celebrated?",
+  answer: " Myanmar",
+  options: [ "Maldives", " Nepal", " Myanmar", " Sri Lanka" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is 'Padam' in Carnatic Music?",
+  answer: " A love poem",
+  options: [ "A poem about courage", " A patriotic poem", " A love poem", " A lullaby" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which state is the Raika tribe found?",
+  answer: "Rajasthan",
+  options: [ "Rajasthan", " Kerala", " Manipur", " West Bengal" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following organisms belongs to phylum Apicomplexa?",
+  answer: " Plasmodium",
+  options: [ "Physalia", " Plasmodium", " Hydra", " Sponge" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following is related to Hindustani classical singing?",
+  answer: " Mallikarjun Mansur",
+  options: [ "Aruna Sairam", " Mallikarjun Mansur", " Srinavasa lyer", " Ramanuj lyengar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "How many countries participated in the first Asian Games held in 1951?",
+  answer: "11",
+  options: [ "11", " 20", " 24", " 16" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In November 2022, the Supreme Court upheld the 10% reservation of EWS quota. This EWS  reservation was granted on the basis of recommendations from which of the following.  commissions?",
+  answer: " Sinho commission",
+  options: [ "Mandal commission", " Sinho commission", " Kelkar commission", " Sarkaria commission" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which folk music of Jammu and Kashmir is sung in wedding ceremonies?",
+  answer: " Wanawun",
+  options: [ "Baul", " Alha", " Wanawun", " Panihari" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Mundra Thermal Power Plant is located in which district of Gujarat?",
+  answer: " Kutch",
+  options: [ "Jamnagar", " Kheda", " Kutch", " Gandhinagar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Sultans of Delhi was appointed as Amir-i-Tuzuk (Master of Ceremonies) before becoming the Sultan?",
+  answer: "Alauddin Khalji",
+  options: [ "Alauddin Khalji", " Balban", " Iltutmish", " Muhammad Bin Tughlaq" ]
+},
+
+
+
+
+
+
+
+{
+  question: "When was air transport nationalised in India?",
+  answer: " 1953",
+  options: [ "1952", " 1950", " 1951", " 1953" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The famous book 'Sangraha Choodamani', which deals with the current system of Carnatic  music was written by:",
+  answer: " Govindacharya",
+  options: [ "Haripala", " Damodara Misra", " Matanga", " Govindacharya" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the literacy rate of India as per the National Survey of India-2022?",
+  answer: "77.7%",
+  options: [  "71.2%",  "72%","78.3%", "77.7%" ]
+},
+
+
+
+
+
+
+
+
+      ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

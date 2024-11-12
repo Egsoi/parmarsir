@@ -1,0 +1,476 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">   PYQ-4ㅤLec-19            </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "The Asian Games is also known as _________.",
+  answer: " Asiad",
+  options: [ "National Games", " Asiad", " World Cup", " Commonwealth Games" ]
+},
+
+
+
+
+
+
+
+{
+  question: "During a National Emergency, the term of Lok Sabha can be extended for:",
+  answer: " one year at a time",
+  options: [ "three months at a time", " two years at a time", " one year at a time", " six months at a time" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following states is associated with Bonalu festival?",
+  answer: " Telangana",
+  options: [ "Karnataka", " Kerala", " Tamil Nadu", " Telangana" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which type of muscles do the uterus, iris of the eye, and bronchi contain?",
+  answer: " Smooth muscles",
+  options: [ "Striated muscles", " Cardiac muscles", " Smooth muscles", " Skeletal muscles" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following personalities renounced his knighthood after the  Jallianwala Bagh massacre?",
+  answer: " Rabindranath Tagore",
+  options: [ "JC Bose", " CV Raman", " Rabindranath Tagore", " Syed Ahmed Khan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Quit India Resolution was ratified in the _________ session of Indian National  Congress to launch the movement.",
+  answer: " Bombay",
+  options: [ "Lucknow", " Bombay", " Bankipur", " Nagpur" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which metalloid in the carbon group is chemically similar to its group neighbours tin  and silicon?",
+  answer: " Germanium",
+  options: [ "Arsenic", " Flerovium", " Lead", " Germanium" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which group of oilfields among the following is located in Assam?",
+  answer: " Digboi and Naharkatiya",
+  options: [ "Mehsana and Nawagam", " Ankaleshwar and Kalol", " Kosamba and Lunej", " Digboi and Naharkatiya" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Rajasthani architecture is also known as:",
+  answer: " Maru-Gurjara",
+  options: [ "Indo-Saracenic", " Sharqi", " Greco-Roman", " Maru-Gurjara" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Asian Games is also known as _________.",
+  answer: " Asiad",
+  options: [ "National Games", " Asiad", " World Cup", " Commonwealth Games" ]
+},
+
+
+
+
+
+
+
+{
+  question: "During a National Emergency, the term of Lok Sabha can be extended for:",
+  answer: " one year at a time",
+  options: [ "three months at a time", " two years at a time", " one year at a time", " six months at a time" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following states is associated with Bonalu festival?",
+  answer: " Telangana",
+  options: [ "Karnataka", " Kerala", " Tamil Nadu", " Telangana" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which type of muscles do the uterus, iris of the eye, and bronchi contain?",
+  answer: " Smooth muscles",
+  options: [ "Striated muscles", " Cardiac muscles", " Smooth muscles", " Skeletal muscles" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following personalities renounced his knighthood after the  Jallianwala Bagh massacre?",
+  answer: " Rabindranath Tagore",
+  options: [ "JC Bose", " CV Raman", " Rabindranath Tagore", " Syed Ahmed Khan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Quit India Resolution was ratified in the _________ session of Indian National  Congress to launch the movement.",
+  answer: " Bombay",
+  options: [ "Lucknow", " Bombay", " Bankipur", " Nagpur" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which metalloid in the carbon group is chemically similar to its group neighbours tin  and silicon?",
+  answer: " Germanium",
+  options: [ "Arsenic", " Flerovium", " Lead", " Germanium" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which group of oilfields among the following is located in Assam?",
+  answer: " Digboi and Naharkatiya",
+  options: [ "Mehsana and Nawagam", " Ankaleshwar and Kalol", " Kosamba and Lunej", " Digboi and Naharkatiya" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Rajasthani architecture is also known as:",
+  answer: " Maru-Gurjara",
+  options: [ "Indo-Saracenic", " Sharqi", " Greco-Roman", " Maru-Gurjara" ]
+},
+{
+  question: "Which of the following novels was written by George Orwell?",
+  answer: "",
+  options: [ "Fahrenheit 451", " Animal Farm", " Pride and Prejudice", " Brave New World" ]
+},
+
+
+
+
+
+
+
+{
+  question: "From the given alternatives, identify an inner planet.",
+  answer: "Mercury",
+  options: [ "Mercury", " Jupiter", " Uranus", " Saturn" ]
+},
+
+
+
+
+
+
+
+{
+  question: "From which country were the ideals of justice of the Indian Constitution borrowed?",
+  answer: " The USSR",
+  options: [ "The UK", " Japan", " The USSR", " The US" ]
+},
+
+
+
+
+
+
+
+{
+  question: "When Akbar introduced Mansabdari system, __________ was the lowest grade of  Mansabdar.",
+  answer: " ten",
+  options: [ "fifty", " one hundred", " ten", " one thousand" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Natya Sangeet is a form of musical play in classical music still prevalent in Maharashtra. Bal Gandharava is an exponent of this musical form. What is actual name of Balgandharva?",
+  answer: " Narayan Shripad Rajhans",
+  options: [ "Mallikarjun Mansur", " Vishnu Narayan Bhatkhande", " Vishnu Digambar Paluskar", " Narayan Shripad Rajhans" ]
+},
+
+
+
+
+
+
+
+{
+  question: "K-selected species are characterised by:",
+  answer: " species possessing relatively stable populations and which tend to produce  relatively low numbers of offspring",
+  options: [ "species possessing relatively unstable populations and which tend to produce हैं: relatively large numbers of offspring", " species possessing relatively stable populations and which tend to produce  relatively large numbers of offspring", " species possessing relatively unstable populations and which tend to produce  relatively low numbers of offspring", " species possessing relatively stable populations and which tend to produce  relatively low numbers of offspring" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Technetium, the first artificially produced element used in many medical diagnostic  imaging scans, is found in which group of the periodic table?",
+  answer: "Group 7",
+  options: [ "Group 7", " Group 19", " Group 12", " Group 14" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who was the first Indian woman to be appointed Chief Justice of a state  High Court?",
+  answer: "Leila Seth",
+  options: [ "Leila Seth", " Anna Chandy", " M. Fathima Beevi", " Kiran Mazumdar-Shaw" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following are also known as Monsoon Forests ?",
+  answer: "Tropical Deciduous Forests",
+  options: [ "Tropical Evrgreen Forests", "Tropical Deciduous Forests", "Thorn Forests", "Mangrove Forests" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which among the following is the monsoon mud festival of Goa?",
+  answer: " chikal kalo",
+  options: [ "Sarhul", " Karma", " chikal kalo", " Ladainha" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The withdrawal of the monsoon begins in ______ states of India by early  September.",
+  answer: " North Western",
+  options: [ "North Eastern", " North Western", " South Eastern", " South Western" ]
+},
+
+
+
+
+      ];
+      
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,355 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">    PYQ-4ㅤLec-27           </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+    let questions = [
+
+
+
+{
+  question: "Of the total water content available globally, how much percentage of water is received from  freshwater resources?",
+  answer: "2.5 %",
+  options: [ "0.5 %", "4.5 %", "3.5", "2.5 %" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is known as the steel city in India?",
+  answer: " Jamshedpur",
+  options: [ "Mumbai", " Jamshedpur", " Patna", " Ranchi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who discovered a principle that states that the buoyant force on an object is equal to the weight of the fluid displaced by the object?",
+  answer: " Archimedes",
+  options: [ "Isaac Newton", " Niels Bohr", " Archimedes", " Galileo Galilei" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Begum Akhtar a famous singer from India is known for which of the following genres?",
+  answer: "Ghazal music",
+  options: [ "Ghazal music", " Sufi music", " Folk music", " Carnatic music" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements is correct regarding the demand curve?ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ  I. It is a graphical representation of the demand function. ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤII. It gives the quantity demanded by the consumer at each price.",
+  answer: " Both I and II",
+  options: [ "Neither I nor II", " Both I and II", " Only II", " Only I" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following was widely considered as the ‘heaven born service’ for Indians  during British rule?",
+  answer: " The Indian Civil Service or ICS",
+  options: [ "Military service on the Burma front", " The Indian Civil Service or ICS", " The Indian Judicial Service", " The British Indian Army" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Deepa Kartha represents ________ dance.",
+  answer: " Kathak",
+  options: [ "Manipuri", " Sattriya", " Odissi", " Kathak" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the correct way to mix acid and water?",
+  answer: " The acid must be slowly added to the water.",
+  options: [ "The water must be added to the acid.", " The water must be heated before mixing.", " The acid must be heated before mixing.", " The acid must be slowly added to the water." ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the colour of the antenna used on the volleyball net?",
+  answer: "Red and white",
+  options: [ "Red and white", " Yellow and black", " Black and white", " Green and white" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Special Drawing Rights are also known as ________.",
+  answer: " Paper Gold",
+  options: [ "Golden Papers", " International Reserves Money", " Paper Gold", " Gold Papers" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is one of the largest spiral galaxies?",
+  answer: " NGC 6872",
+  options: [ "Milky Way", " Maffei 1", " Cygnus A", " NGC 6872" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements is INCORRECT about the Music of India?",
+  answer: " The musical instrument Kamaicha is majorly used by the 'Manganiar' Community  of Manipur as a popular accompaniment to their songs.",
+  options: [ "A raga is believed to have started as a tribal or folk tune.", " The musical instrument Kamaicha is majorly used by the 'Manganiar' Community  of Manipur as a popular accompaniment to their songs.", " The sruti is a unit of measure or small difference between the various consecutive  pitches within a grama or a scale.", " Tala is a cyclic arrangement of time units." ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements most accurately describes the Cyclostomata group?",
+  answer: "They are characterised by having an elongated eel-like body circular mouth slimy skin and are scaleless.",
+  options: [ "They are characterised by having an elongated eel-like body circular mouth slimy skin and are scaleless.", " They are ectothermic animals having mucus glands in the skin and a three- chambered heart.", " They are warm-blooded oviparous bipedal feathered winged and toothless vertebrates.", " Their skin is covered with scales/plates and their hearts have only two chambers" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following appointed Aziz Khummar a wine distiller to high  administrative post?",
+  answer: " Muhammad Tughluq",
+  options: [ "Alauddin Khalji", " Muhammad Tughluq", " Jalaluddin Khalji", " Firuz Shah Tughluq" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The Kolar Gold Fields is located in which state of India?",
+  answer: "Karnataka",
+  options: [ "Karnataka", " Jharkhand", " Kerala", " Andhra Pradesh" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following statements is/are correct?ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 1______ Salts of a strong acid and weak base are acidic with pH value less than 7.ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 2____ When electricity is passed through an aqueous solution of sodium chloride  (called brine), it decomposes to form sodium oxide.",
+  answer: " Only I",
+  options: [ "Neither I nor II", " Both I and II", " Only II", " Only I" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which among the following is not a type of solar eclipse?",
+  answer: " Penumbral",
+  options: [ "Annular", " Partial", " Penumbral", " Total" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT a non-contact force?",
+  answer: " Friction",
+  options: [ "Gravitational", " Electrostatic", " Friction", " Magnetic" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Potassium salt obtained as a by-product of alcohol Manufacturing during the  fermentation process ?",
+  answer: "Potassium Bitrate",
+  options: [ "Potassium Nitrate", "Potassium Bitrate", "Potassium Citrate", "Potassium Litrate" ]
+},
+
+
+
+
+
+
+
+      ];
+
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

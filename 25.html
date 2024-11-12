@@ -1,0 +1,331 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">  PYQ-4ㅤLec-25             </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+    let questions = [
+
+
+
+
+{
+  question: "Devanampriya Piyadasi is another name for whom among the following Mauryan kings?",
+  answer: " Ashoka",
+  options: [ "Shatadhanvan", " Bindusara", " Samprati", " Ashoka" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Identify the option that contains the correct sequence of Indian states in terms of decreasing average annual rainfall.",
+  answer: " Assam > Bihar > Rajasthan",
+  options: [ "Haryana > Bihar > Rajasthan", " Rajasthan > Assam > Bihar", " Uttar Pradesh > Bihar > West Bengal", " Assam > Bihar > Rajasthan" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which part of the bifocal lens facilitates near vision?",
+  answer: " Lower part with convex lens",
+  options: [ "Upper part with concave lens", " Lower part with concave lens", " Upper part with convex lens", " Lower part with convex lens" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year was the Department of Sports transformed into the Department of  Youth Affairs and Sports?",
+  answer: " 1985",
+  options: [ "1983", " 1982", " 1985", " 1984" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In Andhra region, who among the following translated a few portions of Mahabharata  in Telugu?",
+  answer: "Nanniah",
+  options: [ "Nanniah", " Tikkanna", " Pampa", " Kamban" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Section of the Representation of People's Act (RPA), 1951 deprives the  prisoners of their right to vote?",
+  answer: "Section 62 (5)",
+  options: [ "Section 10", "Section 15 (3)", "Section 62 (5)", "Section 72 (5)" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In Fencing, a defensive blade movement that blocks the opponent's offensive action is  called ______ .",
+  answer: "parry",
+  options: [ "parry", "redoublement", "saber", "reprise" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Aajeevika - National Rural Livelihoods Mission (NRLM) launched by the Ministry of  Rural Development (MORD), Government of India, in the year ________ .",
+  answer: "2011",
+  options: [ "2010", "2013", "2011", "2012" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which theory describes the collective effects of changes in Earth's movements on its  climate over thousands of years?",
+  answer: "Milankovitch theory",
+  options: [ "Continental drift theory", "Milankovitch theory", "Copernicus' heliocentric theory", "Plate tectonics theory" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the impact of proportional taxes?",
+  answer: "Reduces the autonomous expenditure multiplier",
+  options: [ "Increases the induced expenditure multiplier", "Increases the marginal propensity to consume", "Increases the autonomous expenditure multiplier", "Reduces the autonomous expenditure multiplier" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following committees was associated with Industrial Licensing Policy Inquiry?",
+  answer: "Dutt Committee",
+  options: [ "Dutt Committee", " Gadgil Committee", " Sen Committee", " Hazari Committee" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year did Robert Brown observe the zigzag movement of colloidal particles in solution?",
+  answer: "1827",
+  options: [ "1828", "1829", "1826", "1827" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a Region of Low Pressure ?",
+  answer: "ITCZ",
+  options: [ "ITCZ", "Horse Latitudes", "Frigid Zone", "Poles" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who was the Governor General during 2 nd Anglo Afghan war ?",
+  answer: "Lytton",
+  options: [ "Auckland", "Hardinge 1", "Dalhousie", "Lytton" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The crust is the Earth's outermost layer that is less than _______ percent of  Earth by mass, with oceanic crust and continental crust often consisting of  more felsic rocks.",
+  answer: " 1",
+  options: [ "5", " 1", " 10", " 2" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year, James Mill Published a massive three-volume work, “A  History of British India”?",
+  answer: " 1817",
+  options: [ "1807", " 1815", " 1805", " 1817" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Why does one get cramps after sudden physical activity?",
+  answer: " The build-up of lactic acid in our muscles  during sudden activity causes cramps.",
+  options: [ "The pepsin enzyme releases chemicals  that lead to cramps.", " The oxygen molecules breaks down.", " The build-up of hydrochloric acid in our  muscles during sudden activity causes  cramps.", " The build-up of lactic acid in our muscles  during sudden activity causes cramps." ]
+},
+
+
+
+
+
+
+      ];
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

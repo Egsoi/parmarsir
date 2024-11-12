@@ -1,0 +1,299 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">   PYQ-4ㅤLec-11            </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [  
+
+{
+  question: "Which of the following countries does not share land boundary with India?",
+  answer: "Tajikistan",
+  options: [ "Tajikistan", " Bhutan", " Bangladesh", " Myanmar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "❝ 𝐂𝐡𝐞𝐫𝐚𝐰 𝐝𝐚𝐧𝐜𝐞 ❞  belongs to which of the following states?",
+  answer: "Mizoram",
+  options: [ "Mizoram", " Gujarat", " Uttarakhand", " Nagaland" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following 𝐬𝐭𝐚𝐭𝐞𝐬  is the 𝐥𝐞𝐚𝐬𝐭 𝐩𝐨𝐩𝐮𝐥𝐚𝐭𝐞𝐝  according to census 2011?",
+  answer: " Arunachal Pradesh",
+  options: [ "Odisha", " Arunachal Pradesh", " Andhra Pradesh", " Kerala" ]
+},
+
+
+
+
+
+
+
+{
+  question: "AIDS is an abbreviation for:",
+  answer: " Acquired Immuno Deficiency Syndrome",
+  options: [ "Acquire Immuno Deficiency Syndicate", " Acquired Immuno Deficiency Syndrome", " Acquired Immuno Deficiency Syndicate", " Acquired Immunic Deficiency Syndrome" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is a seaport of Goa?",
+  answer: " Mormugao",
+  options: [ "Kochi", " Mormugao", " Mangalore", " Mumbai" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following forts was built by Raja Rai Singh in 1588?",
+  answer: " Junagarh Fort",
+  options: [ "Amer Fort", " Junagarh Fort", " Kumbhal Garh", " Sonar Kila" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which trek in Bhutan is considered to be the crown jewel of Bhutanese trekking ?",
+  answer: " Snowman Trek",
+  options: [ "Dagala Thousand Lakes Trek", " Snowman Trek", " Laya Gasa Trek", " Jumolhari Trek" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following is seventh Sikh guru?",
+  answer: " Guru Har Rai",
+  options: [ "Guru Har Kishan", " Guru Har Rai", " Guru Hargobind", " Guru Teg Bahadur" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In the reference of the Delhi Sultanate, what was the ‘Group of Forty’?",
+  answer: " They were mostly powerful Turkish slaves of Iltutmish -who took power in the interregnum  following Sultana Raziyya’s killing.",
+  options: [ "They were forty banjara leaders who transferred military supplies in times of war.", " They were mostly powerful Turkish slaves of Iltutmish -who took power in the interregnum  following Sultana Raziyya’s killing.", " They were forty Rajput nobles who planned a coup to dethrone Qutb ud Din Aibak in 1210", " They were forty military archers who distinguished themselves by their bravery in the Delhi  Sultanate." ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the name of the highest peak of Indian Garhwal Himalayas located in Chamoli district of Uttarakhand state with a height of 7,816 metres?",
+  answer: " Nanda Devi",
+  options: [ "Mukut Parbat", " Hardeol", " Trisul", " Nanda Devi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What is the literacy rate for Scheduled Tribe Population as per the 2011 Census?",
+  answer: " 59%",
+  options: [ "65%", " 55%", " 66%", " 59%" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following is Not part of Parliament of India?",
+  answer: " Legislative Council",
+  options: [ "Council of State", " President", " House of the People", " Legislative Council" ]
+},
+
+
+
+
+
+
+
+{
+  question: "❝ 𝟐 𝐒𝐭𝐚𝐭𝐞𝐬 ❞  is a novel written by whom among the following authors?",
+  answer: " Chetan Bhagat",
+  options: [ "Ayan Gogoi Gohain", " Kiran Desai", " Chetan Bhagat", " Arundhati Roy" ]
+},
+
+
+
+
+
+
+
+{
+  question: "________ is NOT part of the Union Executive.",
+  answer: " The Supreme Court of India",
+  options: [ "The Prime Minister of India", " The President of India", " The Supreme Court of India", " The Council of Ministers" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was the founder of the Indian Association for the Cultivation of Science in 1876, an institution, devoted to the pursuit of fundamental research in the frontier areas of basic sciences?",
+  answer: " Dr. Mahendra Lal Sircar",
+  options: [ "Chandrasekhara Venkata Raman", " Dr. Mahendra Lal Sircar", " Mokshagundam Visvesvaraya", " Har Gobind Khorana" ]
+},
+
+    ];
+    
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,347 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-12          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+  let questions = [  
+
+{
+  question: "Which of the following Article talks about Supreme Court as a Court of Record ?",
+  answer: " Article 129",
+  options: [ "Article 127", " Article 129", " Article 131", " Article 125" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following departments was established by Mod. Bin Tughlaq.",
+  answer: " Diwan-i-Kohi",
+  options: [ "Diwan-i-Insha", " Diwan-i-Arz", " Diwan-i-Kohi", " Diwan-i-Riyasat" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Veto is used when President keeps the Bill for an undefinite time period ?",
+  answer: " Pocket Veto",
+  options: [ "Absolute Veto", " Suspensive Veto", " Pocket Veto", " Qualified Veto" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following cities was the capital of the Pallavas?",
+  answer: " Kanchipuram",
+  options: [ "Rameshwaram", " Hampi", " Orugallu", " Kanchipuram" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who is best known for his testimony on climate change to congressional committees  in the 1980s,Which helped raise wider awareness of the global warming issue?",
+  answer: " James Hansen",
+  options: [ "Joseph Fourier", " Svante Arrhenius", " James Hansen", " Shen Kuo" ]
+},
+
+
+
+
+
+
+
+{
+  question: "_________ is an example of acoelomate.",
+  answer: " Platyhelminthes",
+  options: [ "Molluscs", " Arthropods", " Echinoderms", " Platyhelminthes" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who among the following was the founder of the Gurjara-Pratihara dynasty in the  region of Malwa in the eighth century?",
+  answer: "Nagabhatta I",
+  options: [ "Nagabhatta I", " Dantidurga", " Vindhyashakti", " Mihira Bhoja" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which curve shows a relationship between Inflation & Unemployment",
+  answer: " Philips",
+  options: [ "Laffers", " Philips", " Lorenz", " Kuznets" ]
+},
+
+
+
+
+
+
+
+{
+  question: "How many controls globally effect Climate ?",
+  answer: " 6",
+  options: [ "5", " 6", " 7", " 8" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who was the first speaker of the Lok Sabha after India’s Independence?",
+  answer: " Ganesh V Mavalankar",
+  options: [ "M Ananthasayanam", " Ganesh V Mavalankar", " MA Ayyangar", " Meira Kumar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which State/Union Territory has the longest Coastal Boundary ?",
+  answer: " Andaman & Nicobar",
+  options: [ "Andhra Pradesh", " Gujrat", " Tamil Nadu", " Andaman & Nicobar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "‘What is the Tenure of Rajya Sabha ?",
+  answer: " No Tenure",
+  options: [ "5 Years", " 6 Years", " 1/3rd members retire after every 2 Years", " No Tenure" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is NOT a directive principle of international peace and  security?",
+  answer: "Create opportunities of employment for foreigners",
+  options: [ "Create opportunities of employment for foreigners", " Promotion of international peace and security", " Encourage settlements of international disputes", " Respect for international laws and treaty obligations" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Parliamentary Committee contains members only from Lok Sabha :",
+  answer: " Estimates Committee",
+  options: [ "Public Accounts Committee", " Estimates Committee", " Committee on Public Undertaking", " Business Advisory Committee" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following bacteria grow in milk and convert it to curd?",
+  answer: " Lactobacillus bacteria",
+  options: [ "Salmonella typhi", " Salmonella lactae", " E. curdae", " Lactobacillus bacteria" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following Acts abolished the East India Company’s monopoly of trade  with China?",
+  answer: "Charter Act of 1833",
+  options: [ "Charter Act of 1833", " Charter Act of 1853", " Government of India Act 1858", " Charter Act of 1793" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which option is NOT correct in case of appointment of a Governor?",
+  answer: " Appointed for six years",
+  options: [ "Cannot hold any office of profit during his tenure", " Should be at least 35 years", " Appointed for six years", " Citizen of India" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Karewas are found in ?",
+  answer: "Kashmir Himalayas",
+  options: [ "Kashmir Himalayas", " Sikkim Himalayas", " Nepal Himalayas", " Kumaon Himalayas" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Black soil of Deccan Plateau lacks which of the following ?",
+  answer: " Phosphorus",
+  options: [ "Iron", " Lime", " Phosphorus", " Potash" ]
+},
+
+    ];
+    
+
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

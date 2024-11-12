@@ -1,0 +1,375 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>      Parmar Sir Quiz     </title>
+   <link rel="stylesheet" href="/css/style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+   <link rel="stylesheet" href="/css/pyq.css">
+
+
+</head>
+
+<body>
+   <div id="svg"></div>
+
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+
+<input type="range" id="timeRange" min="10" max="45" value="15" step="5">
+<p>Time: <span id="timeValueDisplay">15</span> sec </p>
+      
+   </div>
+
+   <div class="quiz_box">
+      <br> <br>
+
+      <p  class="Join"  style="font-size: 12px; margin-bottom: 7px; text-align: center;">Join official telegram channel <a style="color: lightseagreen;   text-decoration: none; font-size: 15px;" href="http://t.me/parmarsirquiz"> @ParmarSirQuiz </a> </p>
+
+      <header>
+         <div class="title">     PYQ-4ㅤLec-24          </div>
+
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+
+      </header>
+
+      <section>
+
+         <div class="que_text"> </div>
+
+         <div class="HindiQue_text"></div>
+
+         <div class="Shift_text"> </div>
+
+         <div class="option_list"> </div>
+
+      </section>
+
+      <footer>
+
+         <div class="total_que"> </div>
+         <button class="next_btn">Next ➜</button>
+
+      </footer>
+
+   </div>
+
+   <div class="result_box">
+      <div class="icon"> </div>
+
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text"> </div>
+
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+
+   <script>
+
+
+
+
+    let questions = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  question: "The advisory board under provisions of Article 22 of the Constitution is to be consisted  of persons who are, or have been or are qualified to be appointed as __________.",
+  answer: " Judges of High court",
+  options: [ "Judges of Supreme court", " Judges of Lower court", " Judges of High court", " Judges of District court" ]
+},
+
+
+
+
+
+
+
+{
+  question: "If a person who is arrested, is NOT produced before the Magistrate within 24 hours  from the time of arrest, he will be entitled to be released on the writ of ________.",
+  answer: "Habeas Corpus",
+  options: [ "Habeas Corpus", " Prohibition", " Quo-warranto", " Mandamus" ]
+},
+
+
+
+
+
+
+
+{
+  question: "According to Dr. BR Ambedkar’s views, which of the following is the key feature of the Directive Principles of the Constitution?",
+  answer: " Novel feature",
+  options: [ "Basic feature", " Novel feature", " Basic law", " Mandatory feature" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which of the following years did Antoine Lavoisier discover the law of conservation of mass and state that mass is conserved in a chemical reaction?",
+  answer: " 1789",
+  options: [ "1787", " 1786", " 1788", " 1789" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Dalkhai is a popular folk dance of:",
+  answer: " Odisha",
+  options: [ "Uttar Pradesh", " Odisha", " Punjab", " Bihar" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Shovana Narayan has been honoured with the Padma Shri for her contribution to  which Indian dance form?",
+  answer: " Kathak",
+  options: [ "Odissi", " Kathak", " Kathakali", " Kuchipudi" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is called as Aggregate Monetary Resource :",
+  answer: " M3",
+  options: [ "M0", " M1", " M2", " M3" ]
+},
+
+
+
+
+
+
+
+{
+  question: "A Flight of Pigeons is a famous book written by _________________.",
+  answer: " Ruskin Bond",
+  options: [ "Salman Rushdie", " Vikram Seth", " Khushwant Singh", " Ruskin Bond" ]
+},
+
+
+
+
+
+
+
+{
+  question: "To what phylum does a blood sucking leech belong?",
+  answer: " Annelida",
+  options: [ "Platyhelminthes", " Aschelmenthis", " Annelida", " Cnidarian" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which bacteria have a thick cell wall with several layers of peptidoglycan and teichoic  acid?",
+  answer: "Staphylococcus aureus",
+  options: [ "Staphylococcus aureus", " Pseudomonas aeruginosa", " Salmonella enterica", " Escherichia coli" ]
+},
+
+
+
+
+
+
+
+{
+  question: "What was the main purpose of establishing the Agricultural Prices Commission in  1965?",
+  answer: "To determine the prices for various farm products purchased by the government",
+  options: [ "To determine the prices for various farm products purchased by the government", " To determine the price of seeds used in agriculture", " To determine the prices for various farm products for sale in the open market", " To determine the price of fertiliser and electricity paid by farmers" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which of the following is the main active ingredient of clove oil?",
+  answer: "Eugenol",
+  options: [ "Eugenol", " Curcuma", " Malic acid", " Tartaric acid" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which Article of the Indian Constitution mentions about the salaries and allowances of members of the Legislative Assembly and the Legislative Council of a state?",
+  answer: "Article 195",
+  options: [ "Article 195", " Article 199", " Article 198", " Article 194" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Which unit is used to measure the concentration of contaminants in soil and sediment?",
+  answer: " PPM",
+  options: [ "DPMO", " TDS", " PPBB", " PPM" ]
+},
+
+
+
+
+
+
+
+{
+  question: "'Tamu Lochar' is one of the traditional festivals of the ___________ of Sikkim. It is celebrated to mark the beginning of their new year, which falls on the 15th day of Pusa, according to the Hindu calendar Vikram Samvat and 30th December in the English calendar.",
+  answer: "Gurung community",
+  options: [ "Gurung community", " Bhutia community", " Mangar community", " Lepcha community" ]
+},
+
+
+
+
+
+
+
+{
+  question: "Who was the first Indian wrestler to win a world championship medal?",
+  answer: " Udey Chand",
+  options: [ "Malwa Singh", " Udey Chand", " Dara Singh", " KD Jadhav" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In which year did a trio of scientists, Avery, MacLeod and McCarty, prove that except  viruses, all living organisms have DNA as their genetic material?",
+  answer: " 1944",
+  options: [ "1961", " 1918", " 1902", " 1944" ]
+},
+
+
+
+
+
+
+
+{
+  question: "The headquarters of the Indian Institute of Tourism and Travel Management are  located at:",
+  answer: " Gwalior",
+  options: [ "Guwahati", " New Delhi", " Bhuvneshwar", " Gwalior" ]
+},
+
+
+
+
+
+
+
+{
+  question: "In Hindustani classical music, according to Vishnu Narayana Bhatkhande, how many  thaats are the origins of ragas?",
+  answer: " 10",
+  options: [ "20", " 72", " 10", " 52" ]
+},
+
+
+
+
+
+
+
+{
+  question: "When was the Bharat Nirman Programme launched by the Government of India?",
+  answer: "2005",
+  options: [ "2005", " 2014", " 2010", " 2000" ]
+},
+
+
+
+
+
+      ];
+
+
+
+   </script>
+
+
+
+   <script src="/js/script.js"></script>
+   <script src="/js/alert.js"></script>
+
+   
+</body>
+ </html>
+ 
+ 
+ 
+ 
+ 
+ 

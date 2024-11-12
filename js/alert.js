@@ -1,4 +1,4 @@
-
+/*
 
  const hideClasses = ['box', 'review_btn'];
 
@@ -9,7 +9,7 @@
     }
  });
 
-
+*/
 
  // Load SweetAlert2 dynamically
  const script = document.createElement('script');
